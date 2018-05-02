@@ -5,20 +5,21 @@ import uploadTestcase from './upload-command'
 
 const cli = meow(`
   Usage
-    $ shutter --testrun=<testRunID> --name=<testcase name> <files...>
+    $ shutter --testrun=<testRunID> --name=<testcase name> [<options>] <files...>
 
   Arguments
     Pass a file path to an HTML file and optionally additional asset files (CSS/JS).
 
   Options
-    --name          The name of this test case.
-    --testrun       The shutter.sh test run ID.
-    --help          Show this help.
-    --version       Show version.
+    --name              The name of this test case.
+    --testrun           The shutter.sh test run ID.
+    --await-completion  Run until the snapshot has been processed. Optional.
+    --help              Show this help.
+    --version           Show version.
 
   Environment
-    SHUTTER_HOST    Shutter service endpoint to use. For development purposes.
-                    Something like: https://api.shutter.sh/
+    SHUTTER_HOST        Shutter service endpoint to use. For development purposes.
+                        Something like: https://api.shutter.sh/
 `)
 
 if (cli.flags.help || cli.input.length === 0) {
@@ -37,7 +38,14 @@ const fail = (message: string) => {
 // TODO: Need to set a default, once the service has a production deployment
 const shutterHost = (process.env.SHUTTER_HOST || fail(`SHUTTER_HOST environment variable not set.`)) as string
 
-uploadTestcase(cli.input, { shutterHost, testRunID: cli.flags.testrun, name: cli.flags.name })
+const commandOptions = {
+  shutterHost,
+  testRunID: cli.flags.testrun,
+  name: cli.flags.name,
+  waitUntilFinished: cli.flags.awaitCompletion
+}
+
+uploadTestcase(cli.input, commandOptions)
   .catch(error => {
     console.error(error)
     process.exit(1)

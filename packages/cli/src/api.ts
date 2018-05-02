@@ -29,3 +29,10 @@ export const createTestcase = async (shutterHost: string, params: TestcaseCreati
   const response = await req
   return response.body
 }
+
+export const retrieveTestcase = async (shutterHost: string, id: string) => {
+  const response = await request
+    .get(createServiceURL(shutterHost, `/testcase/${id}`))
+
+  return response.body
+}
