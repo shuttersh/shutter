@@ -1,0 +1,17 @@
+{
+  "name": "shutter.sh",
+  "private": true,
+  "scripts": {
+    "postinstall": "link-parent-bin",
+    "build": "oao run-script build",
+    "pretest": "yarn build",
+    "test": "oao run-script --parallel test"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "link-parent-bin": "^0.2.0",
+    "oao": "^1.5.1"
+  }
+}

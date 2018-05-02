@@ -1,0 +1,24 @@
+{
+  "name": "@shutter/cli",
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "Andy Wermke (https://github.com/andywer)",
+  "bin": {
+    "shutter": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "tslint --project . 'src/**/*.ts' -e '**/*.d.ts'"
+  },
+  "devDependencies": {
+    "tslint": "^5.9.1",
+    "tslint-config-standard": "^7.0.0",
+    "typescript": "^2.8.3"
+  },
+  "dependencies": {
+    "@types/meow": "^4.0.1",
+    "@types/superagent": "^3.5.8",
+    "meow": "^5.0.0",
+    "superagent": "^3.8.3"
+  }
+}
