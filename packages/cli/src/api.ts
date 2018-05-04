@@ -20,6 +20,14 @@ export const createSnapshot = async (shutterHost: string, htmlPath: string, asse
   return response.body
 }
 
+export const retrieveFile = async (shutterHost: string, fileHash: string) => {
+  const response = await request
+    .get(createServiceURL(shutterHost, `/file/${fileHash}`))
+    .responseType('blob')
+
+  return response.body
+}
+
 export const retrieveProcessedSnapshot = async (shutterHost: string, snapshotID: string) => {
   const response = await request
     .get(createServiceURL(shutterHost, `/snapshot/${snapshotID}/processed`))

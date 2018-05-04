@@ -10,6 +10,7 @@ const cli = meow(`
 
   Commands
     push              Upload page for rendering.
+    pull              Download rendered snapshot or diff.
 
   Options
     --help            Show this help.
