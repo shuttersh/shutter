@@ -20,7 +20,7 @@ export const createSnapshot = async (shutterHost: string, htmlPath: string, asse
   return response.body
 }
 
-export const getProcessedSnapshot = async (shutterHost: string, snapshotID: string) => {
+export const retrieveProcessedSnapshot = async (shutterHost: string, snapshotID: string) => {
   const response = await request
     .get(createServiceURL(shutterHost, `/snapshot/${snapshotID}/processed`))
 

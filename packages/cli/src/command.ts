@@ -1,4 +1,8 @@
-export type CommandFunction = (args: string[], flags: { [flagName: string]: any }, config: { shutterHost: string }) => Promise<any>
+export interface Options {
+  shutterHost: string
+}
+
+export type CommandFunction = (args: string[], flags: { [flagName: string]: any }, config: Options) => Promise<any>
 
 export interface Command {
   help: string,

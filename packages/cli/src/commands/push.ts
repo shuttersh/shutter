@@ -1,5 +1,5 @@
-import { createSnapshot, getProcessedSnapshot } from '../api'
-import { CommandFunction } from '../command'
+import { createSnapshot, retrieveProcessedSnapshot } from '../api'
+import { CommandFunction, Options } from '../command'
 
 export const minimumArgs = 1
 
@@ -21,10 +21,6 @@ export const help = `
 
 interface Flags {
   awaitCompletion?: boolean
-}
-
-interface Options {
-  shutterHost: string
 }
 
 const round = (someNumber: number, decimalPlaces: number) => Math.round(someNumber * (10 ** decimalPlaces)) / (10 ** decimalPlaces)
@@ -64,7 +60,7 @@ export const command: CommandFunction = async (args: string[], flags: Flags, opt
   if (flags.awaitCompletion) {
     console.error(`Waiting for test case to be processed...`)
     const startTime = Date.now()
-    const uptodateSnapshot = await getProcessedSnapshot(options.shutterHost, snapshot.id)
+    const uptodateSnapshot = await retrieveProcessedSnapshot(options.shutterHost, snapshot.id)
     console.error(`Done. Took ${formatMsToSeconds(Date.now() - startTime)}s.`)
     console.log(JSON.stringify(uptodateSnapshot, null, 2))
   } else {
