@@ -19,7 +19,7 @@ const cli = meow(`
   Environment
     SHUTTER_HOST      Shutter service endpoint to use. For development purposes.
                       Something like: https://api.shutter.sh/
-`)
+`, { autoHelp: false })
 
 const commandName = cli.input[0]
 const command = commandName ? (commands as { [commandName: string]: Command })[commandName] : null
@@ -30,7 +30,7 @@ const fail = (message: string) => {
   process.exit(1)
 }
 
-if (cli.flags.help || cli.input.length === 0) {
+if (cli.input.length === 0 || (cli.flags.help && !command)) {
   cli.showHelp()
   process.exit(0)
 } else if (cli.flags.version) {
