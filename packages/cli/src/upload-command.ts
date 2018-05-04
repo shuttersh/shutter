@@ -1,4 +1,4 @@
-import { createTestcase, retrieveTestcase } from './api'
+import { createSnapshot, getProcessedSnapshot } from './api'
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -29,51 +29,27 @@ const identifyFilePaths = (paths: string[]) => {
   }
 }
 
-const pollUntilTestcaseFinished = async (shutterHost: string, testcaseID: string) => {
-  const timeout = 20000
-  const pollingDelay = 200
-
-  const startTimestamp = Date.now()
-
-  while (Date.now() - startTimestamp < timeout) {
-    const testcase = await retrieveTestcase(shutterHost, testcaseID)
-
-    if (testcase.processingCompletedAt) {
-      return testcase
-    } else {
-      await delay(pollingDelay)
-    }
-  }
-
-  throw new Error(`Not waiting anymore for the test case to processed (${testcaseID}). Reached timeout of ${formatMsToSeconds(timeout)}s.`)
-}
-
 interface UploadOptions {
   shutterHost: string,
-  testRunID?: string,
-  name?: string,
   waitUntilFinished?: boolean
 }
 
 const uploadTestcase = async (paths: string[], options: UploadOptions) => {
-  const { name, shutterHost, testRunID } = options
-
-  if (!testRunID) throw new Error(`No test run ID given.`)
-  if (!name) throw new Error(`No test case name given.`)
+  const { shutterHost } = options
 
   const { htmlPath, assetPaths } = identifyFilePaths(paths)
 
   console.error(`Uploading...`)
-  const testcase = await createTestcase(shutterHost, { testRunID, name }, htmlPath, assetPaths)
+  const snapshot = await createSnapshot(shutterHost, htmlPath, assetPaths)
 
   if (options.waitUntilFinished) {
     console.error(`Waiting for test case to be processed...`)
     const startTime = Date.now()
-    const uptodateTestcase = await pollUntilTestcaseFinished(shutterHost, testcase.id)
+    const uptodateSnapshot = await getProcessedSnapshot(shutterHost, snapshot.id)
     console.error(`Done. Took ${formatMsToSeconds(Date.now() - startTime)}s.`)
-    console.log(JSON.stringify(uptodateTestcase, null, 2))
+    console.log(JSON.stringify(uptodateSnapshot, null, 2))
   } else {
-    console.log(JSON.stringify(testcase, null, 2))
+    console.log(JSON.stringify(snapshot, null, 2))
   }
 }
 

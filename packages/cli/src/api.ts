@@ -5,21 +5,11 @@ const createServiceURL = (shutterHost: string, path: string) => {
   return new URL(path, shutterHost).toString()
 }
 
-interface TestcaseCreationParams {
-  testRunID: string,
-  name: string
-}
-
-export const createTestcase = async (shutterHost: string, params: TestcaseCreationParams, htmlPath: string, assetPaths: string[]) => {
-  const testCaseID = Math.ceil(Math.random() * 10000)
-
-  const metadata = {
-    name: params.name
-  }
+export const createSnapshot = async (shutterHost: string, htmlPath: string, assetPaths: string[]) => {
+  const snapshotID = Math.ceil(Math.random() * 10000)
 
   const req = request
-    .post(createServiceURL(shutterHost, `/testrun/${params.testRunID}/testcase/${testCaseID}`))
-    .field('meta', JSON.stringify(metadata))
+    .post(createServiceURL(shutterHost, `/snapshot/${snapshotID}`))
     .attach('page', htmlPath, { contentType: 'text/html' })
 
   for (const assetPath of assetPaths) {
@@ -30,9 +20,9 @@ export const createTestcase = async (shutterHost: string, params: TestcaseCreati
   return response.body
 }
 
-export const retrieveTestcase = async (shutterHost: string, id: string) => {
+export const getProcessedSnapshot = async (shutterHost: string, snapshotID: string) => {
   const response = await request
-    .get(createServiceURL(shutterHost, `/testcase/${id}`))
+    .get(createServiceURL(shutterHost, `/snapshot/${snapshotID}/processed`))
 
   return response.body
 }

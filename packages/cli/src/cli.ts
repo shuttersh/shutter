@@ -5,14 +5,12 @@ import uploadTestcase from './upload-command'
 
 const cli = meow(`
   Usage
-    $ shutter --testrun=<testRunID> --name=<testcase name> [<options>] <files...>
+    $ shutter [<options>] <files...>
 
   Arguments
-    Pass a file path to an HTML file and optionally additional asset files (CSS/JS).
+    Pass the path to an HTML file and optionally additional asset files (CSS/JS).
 
   Options
-    --name              The name of this test case.
-    --testrun           The shutter.sh test run ID.
     --await-completion  Run until the snapshot has been processed. Optional.
     --help              Show this help.
     --version           Show version.
@@ -40,8 +38,6 @@ const shutterHost = (process.env.SHUTTER_HOST || fail(`SHUTTER_HOST environment 
 
 const commandOptions = {
   shutterHost,
-  testRunID: cli.flags.testrun,
-  name: cli.flags.name,
   waitUntilFinished: cli.flags.awaitCompletion
 }
 
