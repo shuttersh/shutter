@@ -1,8 +1,33 @@
-import { createSnapshot, getProcessedSnapshot } from './api'
+import { createSnapshot, getProcessedSnapshot } from '../api'
+import { CommandFunction } from '../command'
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+export const minimumArgs = 1
 
-const round = (number: number, decimalPlaces: number) => Math.round(number * (10 ** decimalPlaces)) / (10 ** decimalPlaces)
+export const help = `
+  Usage
+    $ shutter push [<options>] <files...>
+
+  Arguments
+    Pass the path to an HTML file and optionally additional asset files (CSS/JS).
+
+  Options
+    --await-completion  Run until the snapshot has been processed. Optional.
+    --help              Show this help.
+
+  Environment
+    SHUTTER_HOST        Shutter service endpoint to use. For development purposes.
+                        Something like: https://api.shutter.sh/
+`
+
+interface Flags {
+  awaitCompletion?: boolean
+}
+
+interface Options {
+  shutterHost: string
+}
+
+const round = (someNumber: number, decimalPlaces: number) => Math.round(someNumber * (10 ** decimalPlaces)) / (10 ** decimalPlaces)
 const formatMsToSeconds = (ms: number) => round(ms / 1000, 1)
 
 const identifyFilePaths = (paths: string[]) => {
@@ -29,28 +54,20 @@ const identifyFilePaths = (paths: string[]) => {
   }
 }
 
-interface UploadOptions {
-  shutterHost: string,
-  waitUntilFinished?: boolean
-}
-
-const uploadTestcase = async (paths: string[], options: UploadOptions) => {
-  const { shutterHost } = options
-
+export const command: CommandFunction = async (args: string[], flags: Flags, options: Options) => {
+  const paths = args
   const { htmlPath, assetPaths } = identifyFilePaths(paths)
 
   console.error(`Uploading...`)
-  const snapshot = await createSnapshot(shutterHost, htmlPath, assetPaths)
+  const snapshot = await createSnapshot(options.shutterHost, htmlPath, assetPaths)
 
-  if (options.waitUntilFinished) {
+  if (flags.awaitCompletion) {
     console.error(`Waiting for test case to be processed...`)
     const startTime = Date.now()
-    const uptodateSnapshot = await getProcessedSnapshot(shutterHost, snapshot.id)
+    const uptodateSnapshot = await getProcessedSnapshot(options.shutterHost, snapshot.id)
     console.error(`Done. Took ${formatMsToSeconds(Date.now() - startTime)}s.`)
     console.log(JSON.stringify(uptodateSnapshot, null, 2))
   } else {
     console.log(JSON.stringify(snapshot, null, 2))
   }
 }
-
-export default uploadTestcase
