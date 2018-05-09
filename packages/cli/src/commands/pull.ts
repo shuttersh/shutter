@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import { retrieveFile, retrieveProcessedSnapshot } from '../api'
-import { CommandFunction, Options } from '../command'
+import { retrieveFile, retrieveProcessedSnapshot } from '@shutter/api'
+import { CommandFunction } from '../command'
 
 export const minimumArgs = 2
 
@@ -17,7 +17,7 @@ export const help = `
                         Something like: https://api.shutter.sh/
 `
 
-export const command: CommandFunction = async (args: string[], flags: {}, options: Options) => {
+export const command: CommandFunction = async (args: string[], flags: {}) => {
   const whatToPull = args[0]
 
   switch (whatToPull) {
@@ -28,8 +28,8 @@ export const command: CommandFunction = async (args: string[], flags: {}, option
       if (!snapshotID) throw new Error(`Lacking snapshot ID.`)
       if (!outputPath) throw new Error(`Lacking output path.`)
 
-      const snapshot = await retrieveProcessedSnapshot(options.shutterHost, snapshotID)
-      const blob = await retrieveFile(options.shutterHost, snapshot.result.rendered)
+      const snapshot = await retrieveProcessedSnapshot(snapshotID)
+      const blob = await retrieveFile(snapshot.result.rendered)
       fs.writeFileSync(outputPath, blob)
 
       console.error(`Wrote rendered snapshot to ${path.resolve(outputPath)}`)

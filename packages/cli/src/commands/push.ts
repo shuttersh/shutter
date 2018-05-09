@@ -1,5 +1,5 @@
-import { createSnapshot, retrieveProcessedSnapshot } from '../api'
-import { CommandFunction, Options } from '../command'
+import { createSnapshot, retrieveProcessedSnapshot, loadFileFromDisk } from '@shutter/api'
+import { CommandFunction } from '../command'
 
 export const minimumArgs = 1
 
@@ -50,17 +50,22 @@ const identifyFilePaths = (paths: string[]) => {
   }
 }
 
-export const command: CommandFunction = async (args: string[], flags: Flags, options: Options) => {
+export const command: CommandFunction = async (args: string[], flags: Flags) => {
   const paths = args
   const { htmlPath, assetPaths } = identifyFilePaths(paths)
 
   console.error(`Uploading...`)
-  const snapshot = await createSnapshot(options.shutterHost, htmlPath, assetPaths)
+  const htmlFile = await loadFileFromDisk(htmlPath)
+  const assetFiles = await Promise.all(assetPaths.map(
+    path => loadFileFromDisk(path)
+  ))
+
+  const snapshot = await createSnapshot(htmlFile, assetFiles)
 
   if (flags.awaitCompletion) {
     console.error(`Waiting for test case to be processed...`)
     const startTime = Date.now()
-    const uptodateSnapshot = await retrieveProcessedSnapshot(options.shutterHost, snapshot.id)
+    const uptodateSnapshot = await retrieveProcessedSnapshot(snapshot.id)
     console.error(`Done. Took ${formatMsToSeconds(Date.now() - startTime)}s.`)
     console.log(JSON.stringify(uptodateSnapshot, null, 2))
   } else {

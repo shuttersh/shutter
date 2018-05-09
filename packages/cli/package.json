@@ -16,6 +16,7 @@
     "typescript": "^2.8.3"
   },
   "dependencies": {
+    "@shutter/api": "^0.0.0",
     "@types/meow": "^4.0.1",
     "@types/superagent": "^3.5.8",
     "meow": "^5.0.0",

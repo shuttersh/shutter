@@ -17,7 +17,7 @@ const cli = meow(`
     --version         Show the version.
 
   Environment
-    SHUTTER_HOST      Shutter service endpoint to use. For development purposes.
+    SHUTTER_API       Shutter service endpoint to use. For development purposes.
                       Something like: https://api.shutter.sh/
 `, { autoHelp: false })
 
@@ -46,10 +46,7 @@ if (cli.input.length === 0 || (cli.flags.help && !command)) {
   process.exit(1)
 }
 
-// TODO: Need to set a default, once the service has a production deployment
-const shutterHost = (process.env.SHUTTER_HOST || fail(`SHUTTER_HOST environment variable not set.`)) as string
-
-(command as Command).command(args, cli.flags, { shutterHost })
+(command as Command).command(args, cli.flags)
   .catch(error => {
     console.error(error)
     process.exit(1)
