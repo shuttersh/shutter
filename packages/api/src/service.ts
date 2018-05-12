@@ -7,18 +7,31 @@ const createServiceURL = (path: string) => {
   return new URL(path, shutterAPIHost).toString()
 }
 
-export const createSnapshot = async (page: File, pageAssets: File[]) => {
+export interface SnapshotCreationOptions {
+  expectation?: File | null
+}
+
+export const createSnapshot = async (page: File, pageAssets: File[], options: SnapshotCreationOptions = {}) => {
   const req = request
     .post(createServiceURL(`/snapshot`))
     .attach('page', await page.getContent(), {
-      contentType: page.contentType || undefined,
+      contentType: page.contentType || 'text/html',
       filename: page.fileName || 'index.html'
     })
 
+  if (options.expectation) {
+    req.attach('expectation', await page.getContent(), {
+      contentType: options.expectation.contentType || 'image/png',
+      filename: options.expectation.fileName || 'expectation.png'
+    })
+  }
+
   for (const asset of pageAssets) {
+    if (!asset.fileName) throw new Error(`Additional asset lacks filename (index ${pageAssets.indexOf(asset)})`)
+
     req.attach('files[]', await asset.getContent(), {
       contentType: page.contentType || undefined,
-      filename: page.fileName || 'index.html'
+      filename: page.fileName
     })
   }
 
@@ -31,7 +44,7 @@ export const retrieveFile = async (fileHash: string) => {
     .get(createServiceURL(`/file/${fileHash}`))
     .responseType('blob')
 
-  return response.body
+  return response.body as Buffer
 }
 
 export const retrieveProcessedSnapshot = async (snapshotID: string) => {
