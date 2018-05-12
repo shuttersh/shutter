@@ -8,7 +8,9 @@ const createServiceURL = (path: string) => {
 }
 
 export interface SnapshotCreationOptions {
-  expectation?: File | null
+  expectation?: File | null,
+  diffOptions?: any,
+  renderOptions?: any
 }
 
 export const createSnapshot = async (page: File, pageAssets: File[], options: SnapshotCreationOptions = {}) => {
@@ -20,10 +22,16 @@ export const createSnapshot = async (page: File, pageAssets: File[], options: Sn
     })
 
   if (options.expectation) {
-    req.attach('expectation', await page.getContent(), {
+    req.attach('expectation', await options.expectation.getContent(), {
       contentType: options.expectation.contentType || 'image/png',
       filename: options.expectation.fileName || 'expectation.png'
     })
+  }
+  if (options.diffOptions) {
+    req.field('diffOptions', JSON.stringify(options.diffOptions))
+  }
+  if (options.renderOptions) {
+    req.field('renderOptions', JSON.stringify(options.renderOptions))
   }
 
   for (const asset of pageAssets) {
