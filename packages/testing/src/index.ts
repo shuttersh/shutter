@@ -1,10 +1,9 @@
-import { readFile, writeFile } from 'mz/fs'
-import mkdirpCallback from 'mkdirp'
+import { readFile } from 'mz/fs'
 import * as path from 'path'
 import kebabCase from 'dashify'
-import { URL } from 'url'
-import { createFileFromBuffer, createSnapshot, retrieveFile, retrieveProcessedSnapshot, File } from '@shutter/api'
+import { createFileFromBuffer, createSnapshot, retrieveProcessedSnapshot, File } from '@shutter/api'
 import defaultLayout from './default-layout'
+import { createResultData, formatTestResultsOverview, formatSuccessMessage, TestCase } from './results'
 
 export type HTMLString = string
 
@@ -15,26 +14,12 @@ export interface ShutterCreationOptions {
   renderOptions?: any
 }
 
-interface TestCase {
-  testName: string,
-  expectationFilePath: string,
-  expectationFileNotPresent: boolean,
-  processedSnapshotPromise: Promise<any>
-}
-
 export const defaultComponentRenderOptions = {
   autoCrop: true,
   omitBackground: true
 }
 
-const createInspectionURL = (snapshotID: string) => {
-  const shutterAppHost = process.env.SHUTTER_APP || 'https://app.shutter.sh/'
-  return new URL(`/snapshot/${snapshotID}`, shutterAppHost).toString()
-}
-
 const getExpectationPath = (expectationsPath: string, testID: string) => path.join(expectationsPath, `${testID}.png`)
-
-const mkdirp = (dirPath: string) => new Promise((resolve, reject) => mkdirpCallback(dirPath, error => error ? reject(error) : resolve()))
 
 const loadFileIfExists = async (filePath: string): Promise<File | null> => {
   try {
@@ -90,39 +75,14 @@ export const createShutter = (testsDirectoryPath: string, options: ShutterCreati
       finishCalled = true
 
       const results = await Promise.all(
-        tests.map(async test => {
-          const snapshot = await test.processedSnapshotPromise
-          const { match, rendered, similarity } = snapshot.result
-
-          if (test.expectationFileNotPresent) {
-            const renderedContent = await retrieveFile(rendered)
-            await mkdirp(path.dirname(test.expectationFilePath))
-            await writeFile(test.expectationFilePath, renderedContent)
-          }
-
-          return {
-            expectationFileNotPresent: test.expectationFileNotPresent,
-            match,
-            similarity,
-            snapshotID: snapshot.id,
-            testName: test.testName
-          }
-        })
+        tests.map(test => createResultData(test))
       )
-
       const testsFailed = results.some(result => !result.match)
 
       if (testsFailed) {
-        const formattedTestcases = results
-          .map(result => {
-            return result.match
-              ? `  ✔ ${result.testName}`
-              : `  ✖ ${result.testName}\n     Similarity ${(result.similarity * 100).toFixed(2)}% - ${createInspectionURL(result.snapshotID)}`
-          })
-          .join('\n')
-        throw new Error(`Shutter tests failed. Tests:\n${formattedTestcases}`)
+        throw new Error(formatTestResultsOverview(results))
       } else {
-        console.log(`Shutter ran ${results.length} tests ✔`)
+        console.log(formatSuccessMessage(results))
       }
     }
 
