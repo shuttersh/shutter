@@ -1,22 +1,36 @@
 import { readFile } from 'mz/fs'
 import * as path from 'path'
 import kebabCase from 'dashify'
-import { createFileFromBuffer, createSnapshot, retrieveProcessedSnapshot, File } from '@shutter/api'
 import defaultLayout from './default-layout'
-import { createResultData, formatTestResultsOverview, formatSuccessMessage, syncSnapshot, TestCase } from './results'
+import {
+  createFileFromBuffer,
+  createSnapshot,
+  retrieveProcessedSnapshot,
+  File,
+  DiffOptions,
+  RenderOptions
+} from '@shutter/api'
+import {
+  createResultData,
+  formatTestResultsOverview,
+  formatSuccessMessage,
+  syncSnapshot,
+  TestCase
+} from './results'
 
 export type HTMLString = string
 
 export interface ShutterCreationOptions {
-  expectationsPath?: string,
-  diffOptions?: any,
   layout?: (content: HTMLString) => HTMLString,
-  renderOptions?: any
+  expectationsPath?: string,
+  diffOptions?: DiffOptions,
+  renderOptions?: RenderOptions
 }
 
 export interface SnapshotOptions {
-  diffOptions?: any,
-  renderOptions?: any
+  layout?: (content: HTMLString) => HTMLString,
+  diffOptions?: DiffOptions,
+  renderOptions?: RenderOptions
 }
 
 export const defaultComponentRenderOptions = {
@@ -37,11 +51,7 @@ const loadFileIfExists = async (filePath: string): Promise<File | null> => {
 }
 
 export const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreationOptions = {}) => {
-  const {
-    expectationsPath = path.join(testsDirectoryPath, 'snapshots'),
-    layout = defaultLayout
-  } = shutterOptions
-
+  const expectationsPath = shutterOptions.expectationsPath || path.join(testsDirectoryPath, 'snapshots')
   const updateSnapshots = process.argv.includes('--update-shutter-snapshots') || Boolean(process.env.UPDATE_SHUTTER_SNAPSHOTS)
 
   let finishCalled: boolean = false
@@ -49,6 +59,7 @@ export const createShutter = (testsDirectoryPath: string, shutterOptions: Shutte
 
   return {
     async snapshot (testName: string, html: HTMLString, options: SnapshotOptions = {}) {
+      const layout = shutterOptions.layout || options.layout || defaultLayout
       const diffOptions = { ...shutterOptions.diffOptions, ...options.diffOptions }
       const renderOptions = { ...defaultComponentRenderOptions, ...shutterOptions.renderOptions, ...options.renderOptions }
 

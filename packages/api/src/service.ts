@@ -9,8 +9,18 @@ const createServiceURL = (path: string) => {
 
 export interface SnapshotCreationOptions {
   expectation?: File | null,
-  diffOptions?: any,
-  renderOptions?: any
+  diffOptions?: DiffOptions,
+  renderOptions?: RenderOptions
+}
+
+export interface DiffOptions {
+  autoCrop?: boolean,
+  relativeThreshold?: number
+}
+
+export interface RenderOptions {
+  autoCrop?: boolean,
+  omitBackground?: boolean
 }
 
 export const createSnapshot = async (page: File, pageAssets: File[], options: SnapshotCreationOptions = {}) => {
