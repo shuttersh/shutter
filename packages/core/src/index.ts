@@ -14,6 +14,11 @@ export interface ShutterCreationOptions {
   renderOptions?: any
 }
 
+export interface SnapshotOptions {
+  diffOptions?: any,
+  renderOptions?: any
+}
+
 export const defaultComponentRenderOptions = {
   autoCrop: true,
   omitBackground: true
@@ -31,13 +36,11 @@ const loadFileIfExists = async (filePath: string): Promise<File | null> => {
   }
 }
 
-export const createShutter = (testsDirectoryPath: string, options: ShutterCreationOptions = {}) => {
+export const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreationOptions = {}) => {
   const {
     expectationsPath = path.join(testsDirectoryPath, 'snapshots'),
-    layout = defaultLayout,
-    diffOptions = null,
-    renderOptions = defaultComponentRenderOptions
-  } = options
+    layout = defaultLayout
+  } = shutterOptions
 
   const updateSnapshots = process.argv.includes('--update-shutter-snapshots') || Boolean(process.env.UPDATE_SHUTTER_SNAPSHOTS)
 
@@ -45,7 +48,10 @@ export const createShutter = (testsDirectoryPath: string, options: ShutterCreati
   let tests: TestCase[] = []
 
   return {
-    async snapshot (testName: string, html: HTMLString) {
+    async snapshot (testName: string, html: HTMLString, options: SnapshotOptions = {}) {
+      const diffOptions = { ...shutterOptions.diffOptions, ...options.diffOptions }
+      const renderOptions = { ...defaultComponentRenderOptions, ...shutterOptions.renderOptions, ...options.renderOptions }
+
       const testID = kebabCase(testName)
       const documentHTML = layout(html)
 
