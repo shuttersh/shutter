@@ -1,0 +1,32 @@
+{
+  "name": "@shutter/lib",
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "Andy Wermke (https://github.com/andywer)",
+  "main": "./dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "ava-ts",
+    "posttest": "tslint --project . 'src/**/*.ts' 'test/**/*.ts' -e '**/*.d.ts'"
+  },
+  "dependencies": {
+    "@shutter/api": "^0.0.0",
+    "dashify": "^1.0.0",
+    "mkdirp": "^0.5.1",
+    "mz": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/dashify": "^1.0.0",
+    "@types/dotenv": "^4.0.3",
+    "@types/mkdirp": "^0.5.2",
+    "@types/mz": "^0.0.32",
+    "ava": "^0.25.0",
+    "ava-ts": "^0.24.5",
+    "dotenv": "^5.0.1",
+    "ts-node": "^6.0.3",
+    "tslint": "^5.10.0",
+    "tslint-config-standard": "^7.0.0",
+    "typescript": "^2.8.3"
+  }
+}
