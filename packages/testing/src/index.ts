@@ -3,7 +3,7 @@ import * as path from 'path'
 import kebabCase from 'dashify'
 import { createFileFromBuffer, createSnapshot, retrieveProcessedSnapshot, File } from '@shutter/api'
 import defaultLayout from './default-layout'
-import { createResultData, formatTestResultsOverview, formatSuccessMessage, TestCase } from './results'
+import { createResultData, formatTestResultsOverview, formatSuccessMessage, syncSnapshot, TestCase } from './results'
 
 export type HTMLString = string
 
@@ -38,6 +38,8 @@ export const createShutter = (testsDirectoryPath: string, options: ShutterCreati
     diffOptions = null,
     renderOptions = defaultComponentRenderOptions
   } = options
+
+  const updateSnapshots = process.argv.includes('--update-shutter-snapshots') || Boolean(process.env.UPDATE_SHUTTER_SNAPSHOTS)
 
   let finishCalled: boolean = false
   let tests: TestCase[] = []
@@ -75,11 +77,14 @@ export const createShutter = (testsDirectoryPath: string, options: ShutterCreati
       finishCalled = true
 
       const results = await Promise.all(
-        tests.map(test => createResultData(test))
+        tests.map(async test => {
+          await syncSnapshot(test, updateSnapshots)
+          return createResultData(test)
+        })
       )
       const testsFailed = results.some(result => !result.match)
 
-      if (testsFailed) {
+      if (testsFailed && !updateSnapshots) {
         throw new Error(formatTestResultsOverview(results))
       } else {
         console.log(formatSuccessMessage(results))

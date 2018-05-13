@@ -26,15 +26,20 @@ const createInspectionURL = (snapshotID: string) => {
   return new URL(`/snapshot/${snapshotID}`, shutterAppHost).toString()
 }
 
-export const createResultData = async (test: TestCase): Promise<TestResult> => {
+export const syncSnapshot = async (test: TestCase, updateSnapshots: boolean) => {
   const snapshot = await test.processedSnapshotPromise
-  const { match, rendered, similarity } = snapshot.result
+  const { match, rendered } = snapshot.result
 
-  if (test.expectationFileNotPresent) {
+  if (test.expectationFileNotPresent || (!match && updateSnapshots)) {
     const renderedContent = await retrieveFile(rendered)
     await mkdirp(path.dirname(test.expectationFilePath))
     await writeFile(test.expectationFilePath, renderedContent)
   }
+}
+
+export const createResultData = async (test: TestCase): Promise<TestResult> => {
+  const snapshot = await test.processedSnapshotPromise
+  const { match, similarity } = snapshot.result
 
   return {
     expectationFileNotPresent: test.expectationFileNotPresent,
