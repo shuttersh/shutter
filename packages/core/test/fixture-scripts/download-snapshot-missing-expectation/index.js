@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const rimraf = require('rimraf')
-const { createShutter } = require('../../../src')
+const createShutter = require('../../../src').default
 
 // Make sure there are no snapshots to match against
 if (fs.readdirSync(__dirname).includes('snapshots')) {

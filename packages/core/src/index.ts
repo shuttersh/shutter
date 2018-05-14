@@ -50,7 +50,7 @@ const loadFileIfExists = async (filePath: string): Promise<File | null> => {
   }
 }
 
-export const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreationOptions = {}) => {
+const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreationOptions = {}) => {
   const expectationsPath = shutterOptions.expectationsPath || path.join(testsDirectoryPath, 'snapshots')
   const updateSnapshots = process.argv.includes('--update-shutter-snapshots') || Boolean(process.env.UPDATE_SHUTTER_SNAPSHOTS)
 
@@ -111,3 +111,5 @@ export const createShutter = (testsDirectoryPath: string, shutterOptions: Shutte
     // TODO: `addDirectory()`, `addFile()`
   }
 }
+
+export default createShutter

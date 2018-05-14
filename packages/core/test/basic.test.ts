@@ -1,5 +1,5 @@
 import test from 'ava'
-import { createShutter } from '../src'
+import createShutter from '../src'
 
 require('dotenv').load()
 
