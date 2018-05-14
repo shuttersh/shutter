@@ -1,0 +1,33 @@
+{
+  "name": "@shutter/react",
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "Andy Wermke (https://github.com/andywer)",
+  "main": "./dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "ava-ts",
+    "posttest": "tslint --project . 'src/**/*.ts' 'test/**/*.ts' -e '**/*.d.ts'"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "dependencies": {
+    "@shutter/core": "^0.0.0",
+    "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.5"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "ava-ts": "^0.24.5",
+    "dotenv": "^5.0.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "ts-node": "^6.0.3",
+    "tslint": "^5.10.0",
+    "tslint-config-standard": "^7.0.0",
+    "typescript": "^2.8.3"
+  }
+}
