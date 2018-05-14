@@ -3,7 +3,8 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import createShutter, { ShutterCreationOptions as CoreShutterCreationOptions, SnapshotOptions as CoreSnapshotOptions } from '@shutter/core'
 
 export type HTMLString = string
-export type RenderFunction = (reactElement: ReactElement<any>, originalRender: (reactElement: ReactElement<any>) => Promise<HTMLString>) => Promise<HTMLString>
+export type BuiltinRenderFunction = (reactElement: ReactElement<any>) => Promise<HTMLString>
+export type RenderFunction = (reactElement: ReactElement<any>, originalRender: BuiltinRenderFunction) => Promise<HTMLString>
 
 export interface ShutterCreationOptions extends CoreShutterCreationOptions {
   render?: RenderFunction
