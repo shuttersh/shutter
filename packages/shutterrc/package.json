@@ -1,0 +1,27 @@
+{
+  "name": "@shutter/shutterrc",
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "Andy Wermke (https://github.com/andywer)",
+  "main": "./dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "tslint --project . 'src/**/*.ts' -e '**/*.d.ts'"
+  },
+  "dependencies": {
+    "@types/mime-types": "^2.1.0",
+    "@types/superagent": "^3.5.8",
+    "ini": "^1.3.5",
+    "mime-types": "^2.1.18",
+    "mz": "^2.7.0",
+    "superagent": "^3.8.3"
+  },
+  "devDependencies": {
+    "@types/ini": "^1.3.29",
+    "@types/mz": "^0.0.32",
+    "tslint": "^5.10.0",
+    "tslint-config-standard": "^7.0.0",
+    "typescript": "^2.8.3"
+  }
+}
