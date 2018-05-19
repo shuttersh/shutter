@@ -4,6 +4,7 @@
 node_modules/
 .DS_Store
 .env
+.shutterrc
 Thumbs.db
 *.sublime-project
 *.sublime-workspace

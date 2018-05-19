@@ -1,3 +1,4 @@
+import { loadShutterConfig } from '@shutter/shutterrc'
 import { readFile } from 'mz/fs'
 import * as path from 'path'
 import kebabCase from 'dashify'
@@ -59,6 +60,7 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
 
   return {
     async snapshot (testName: string, html: HTMLString, options: SnapshotOptions = {}) {
+      const shutterConfig = await loadShutterConfig()
       const layout = shutterOptions.layout || options.layout || defaultLayout
       const diffOptions = { ...shutterOptions.diffOptions, ...options.diffOptions }
       const renderOptions = { ...defaultComponentRenderOptions, ...shutterOptions.renderOptions, ...options.renderOptions }
@@ -70,7 +72,7 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
       const expectationFilePath = getExpectationPath(expectationsPath, testID)
       const expectation = await loadFileIfExists(expectationFilePath)
 
-      const unprocessedSnapshot = await createSnapshot(htmlPage, [], { diffOptions, expectation, renderOptions })
+      const unprocessedSnapshot = await createSnapshot(shutterConfig.authtoken, htmlPage, [], { diffOptions, expectation, renderOptions })
       const processedSnapshotPromise = retrieveProcessedSnapshot(unprocessedSnapshot.id)
 
       tests.push({

@@ -23,9 +23,10 @@ export interface RenderOptions {
   omitBackground?: boolean
 }
 
-export const createSnapshot = async (page: File, pageAssets: File[], options: SnapshotCreationOptions = {}) => {
+export const createSnapshot = async (authToken: string, page: File, pageAssets: File[], options: SnapshotCreationOptions = {}) => {
   const req = request
     .post(createServiceURL(`/snapshot`))
+    .set('Authorization', `Bearer ${authToken}`)
     .attach('page', await page.getContent(), {
       contentType: page.contentType || 'text/html',
       filename: page.fileName || 'index.html'

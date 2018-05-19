@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import meow from 'meow'
+import { loadShutterConfig } from '@shutter/shutterrc'
 import * as commands from './commands'
 import { showCommandHelp, Command } from './command'
 
@@ -19,7 +20,14 @@ const cli = meow(`
   Environment
     SHUTTER_API       Shutter service endpoint to use. For development purposes.
                       Something like: https://api.shutter.sh/
-`, { autoHelp: false })
+`, {
+  autoHelp: false,
+  flags: {
+    awaitCompletion: {
+      type: 'boolean'
+    }
+  }
+})
 
 const commandName = cli.input[0]
 const command = commandName ? (commands as { [commandName: string]: Command })[commandName] : null
@@ -46,7 +54,12 @@ if (cli.input.length === 0 || (cli.flags.help && !command)) {
   process.exit(1)
 }
 
-(command as Command).command(args, cli.flags)
+loadShutterConfig()
+  .then(config => {
+    // Allow using a different API by setting `servicehost` in .shutterrc (for development purposes)
+    process.env.SHUTTER_API = process.env.SHUTTER_API || config.servicehost || undefined
+  })
+  .then(() => (command as Command).command(args, cli.flags))
   .catch(error => {
     console.error(error)
     process.exit(1)

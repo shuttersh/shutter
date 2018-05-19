@@ -1,4 +1,5 @@
 import { createSnapshot, retrieveProcessedSnapshot, loadFileFromDisk } from '@shutter/api'
+import { loadShutterConfig } from '@shutter/shutterrc'
 import { CommandFunction } from '../command'
 
 export const minimumArgs = 1
@@ -53,6 +54,7 @@ const identifyFilePaths = (paths: string[]) => {
 export const command: CommandFunction = async (args: string[], flags: Flags) => {
   const paths = args
   const { htmlPath, assetPaths } = identifyFilePaths(paths)
+  const config = await loadShutterConfig()
 
   console.error(`Uploading...`)
   const htmlFile = await loadFileFromDisk(htmlPath)
@@ -60,7 +62,7 @@ export const command: CommandFunction = async (args: string[], flags: Flags) => 
     path => loadFileFromDisk(path)
   ))
 
-  const snapshot = await createSnapshot(htmlFile, assetFiles)
+  const snapshot = await createSnapshot(config.authtoken, htmlFile, assetFiles)
 
   if (flags.awaitCompletion) {
     console.error(`Waiting for test case to be processed...`)
