@@ -16,7 +16,8 @@ import {
   formatTestResultsOverview,
   formatSuccessMessage,
   syncSnapshot,
-  TestCase
+  TestCase,
+  TestResult
 } from './results'
 
 export type HTMLString = string
@@ -92,7 +93,7 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
       }
     },
 
-    async finish () {
+    async finish (): Promise<TestResult[]> {
       finishCalled = true
 
       const results = await Promise.all(
@@ -108,6 +109,7 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
       } else {
         console.log(formatSuccessMessage(results))
       }
+      return results
     }
 
     // TODO: `addDirectory()`, `addFile()`
