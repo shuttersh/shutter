@@ -10,16 +10,12 @@ const cli = meow(`
     $ shutter <command> [<arguments>]
 
   Commands
-    push              Upload page for rendering.
     pull              Download rendered snapshot or diff.
+    snapshot          Upload page for rendering.
 
   Options
     --help            Show this help.
     --version         Show the version.
-
-  Environment
-    SHUTTER_API       Shutter service endpoint to use. For development purposes.
-                      Something like: https://api.shutter.sh/
 `, {
   autoHelp: false,
   flags: {
@@ -57,7 +53,11 @@ if (cli.input.length === 0 || (cli.flags.help && !command)) {
 loadShutterConfig()
   .then(config => {
     // Allow using a different API by setting `servicehost` in .shutterrc (for development purposes)
-    process.env.SHUTTER_API = process.env.SHUTTER_API || config.servicehost || undefined
+    if (config.serviceHost && !process.env.SHUTTER_API) {
+      // Cannot use `process.env.SHUTTER_API = process.env.SHUTTER_API || config.serviceHost || undefined`
+      // since `undefined` would be casted to string...
+      process.env.SHUTTER_API = config.serviceHost
+    }
   })
   .then(() => (command as Command).command(args, cli.flags))
   .catch(error => {

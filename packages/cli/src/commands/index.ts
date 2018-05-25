@@ -1,7 +1,7 @@
 import * as pull from './pull'
-import * as push from './push'
+import * as snapshot from './snapshot'
 
 export {
   pull,
-  push
+  snapshot
 }

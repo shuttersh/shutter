@@ -6,7 +6,7 @@ export const minimumArgs = 1
 
 export const help = `
   Usage
-    $ shutter push [<options>] <files...>
+    $ shutter snapshot [<options>] <files...>
 
   Arguments
     Pass the path to an HTML file and optionally additional asset files (CSS/JS).
@@ -14,10 +14,6 @@ export const help = `
   Options
     --await-completion  Run until the snapshot has been processed. Optional.
     --help              Show this help.
-
-  Environment
-    SHUTTER_HOST        Shutter service endpoint to use. For development purposes.
-                        Something like: https://api.shutter.sh/
 `
 
 interface Flags {
