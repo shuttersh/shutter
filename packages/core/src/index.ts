@@ -21,6 +21,7 @@ import {
   TestResult
 } from './results'
 
+export { TestResult }
 export type HTMLString = string
 
 export interface ShutterCreationOptions {

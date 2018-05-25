@@ -1,6 +1,12 @@
 import { ReactElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import createShutter, { ShutterCreationOptions as CoreShutterCreationOptions, SnapshotOptions as CoreSnapshotOptions } from '@shutter/core'
+import createShutter, {
+  ShutterCreationOptions as CoreShutterCreationOptions,
+  SnapshotOptions as CoreSnapshotOptions,
+  TestResult
+} from '@shutter/core'
+
+export { TestResult }
 
 export type HTMLString = string
 export type BuiltinRenderFunction = (reactElement: ReactElement<any>) => Promise<HTMLString>
