@@ -8,7 +8,7 @@ loadEnv()
 
 test('downloads a snapshot for missing expectation', async t => {
   const env = {
-    SHUTTER_API: process.env.SHUTTER_API
+    SHUTTER_API: process.env.SHUTTER_API || ''
   }
 
   const scriptPath = path.join(__dirname, 'fixture-scripts', 'download-snapshot-missing-expectation', 'index.js')
@@ -26,7 +26,7 @@ test('downloads a snapshot for missing expectation', async t => {
 
 test('can update a snapshot by command line option', async t => {
   const env = {
-    SHUTTER_API: process.env.SHUTTER_API
+    SHUTTER_API: process.env.SHUTTER_API || ''
   }
 
   const scriptPath = path.join(__dirname, 'fixture-scripts', 'update-snapshot-by-flag', 'index.js')
@@ -47,7 +47,7 @@ test('can update a snapshot by command line option', async t => {
 
 test('can update a snapshot by environment variable', async t => {
   const env = {
-    SHUTTER_API: process.env.SHUTTER_API,
+    SHUTTER_API: process.env.SHUTTER_API || '',
     UPDATE_SHUTTER_SNAPSHOTS: 'true'
   }
 
