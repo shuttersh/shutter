@@ -12,6 +12,7 @@ import {
   RenderOptions
 } from '@shutter/api'
 import {
+  createInspectionURL,
   createResultData,
   formatTestResultsOverview,
   formatSuccessMessage,
@@ -103,11 +104,13 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
         })
       )
       const testsFailed = results.some(result => !result.match)
+      const inspectionLine = results.length > 0 ? `Inspect the snapshots at <${createInspectionURL(results[0])}>` : ''
 
       if (testsFailed && !updateSnapshots) {
-        throw new Error(formatTestResultsOverview(results))
+        throw new Error(`Shutter tests failed. Tests:\n${formatTestResultsOverview(results)}\n${inspectionLine}`)
       } else {
         console.log(formatSuccessMessage(results))
+        console.log(inspectionLine)
       }
       return results
     }

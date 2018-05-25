@@ -16,14 +16,15 @@ export interface TestResult {
   match: boolean,
   similarity: number,
   snapshotID: string,
+  snapshotSetID: string,
   testName: string
 }
 
 const mkdirp = (dirPath: string) => new Promise((resolve, reject) => mkdirpCallback(dirPath, error => error ? reject(error) : resolve()))
 
-const createInspectionURL = (snapshotID: string) => {
+export const createInspectionURL = (result: TestResult) => {
   const shutterAppHost = process.env.SHUTTER_APP || 'https://app.shutter.sh/'
-  return new URL(`/snapshot/${snapshotID}`, shutterAppHost).toString()
+  return new URL(`/snapshot-set/${result.snapshotSetID}`, shutterAppHost).toString()
 }
 
 export const syncSnapshot = async (test: TestCase, updateSnapshots: boolean) => {
@@ -46,20 +47,19 @@ export const createResultData = async (test: TestCase): Promise<TestResult> => {
     match,
     similarity,
     snapshotID: snapshot.id,
+    snapshotSetID: snapshot.snapshotSetId,
     testName: test.testName
   }
 }
 
 export const formatTestResultsOverview = (results: TestResult[]) => {
-  const formattedTestcases = results
+  return results
     .map(result => {
       return result.match
         ? `  ✔ ${result.testName}`
-        : `  ✖ ${result.testName}\n     Similarity ${(result.similarity * 100).toFixed(2)}% - ${createInspectionURL(result.snapshotID)}`
+        : `  ✖ ${result.testName} (similarity ${(result.similarity * 100).toFixed(2)}%)`
     })
     .join('\n')
-
-  return `Shutter tests failed. Tests:\n${formattedTestcases}`
 }
 
 export const formatSuccessMessage = (results: TestResult[]) => {
