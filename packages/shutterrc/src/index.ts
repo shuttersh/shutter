@@ -5,7 +5,7 @@ import * as os from 'os'
 
 export interface ShutterConfig {
   authtoken: string,
-  [key: string]: string
+  [key: string]: string | undefined
 }
 
 const isFile = async (filePath: string) => {
