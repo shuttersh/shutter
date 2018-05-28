@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "postinstall": "link-parent-bin",
-    "build": "oao run-script build",
+    "build": "oao run-script --tree build",
     "pretest": "yarn build",
     "test": "oao run-script --parallel test"
   },
