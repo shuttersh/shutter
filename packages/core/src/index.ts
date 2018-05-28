@@ -26,7 +26,7 @@ export type HTMLString = string
 
 export interface ShutterCreationOptions {
   layout?: (content: HTMLString) => HTMLString,
-  expectationsPath?: string,
+  snapshotsPath?: string,
   diffOptions?: DiffOptions,
   renderOptions?: RenderOptions
 }
@@ -42,7 +42,7 @@ export const defaultComponentRenderOptions = {
   omitBackground: true
 }
 
-const getExpectationPath = (expectationsPath: string, testID: string) => path.join(expectationsPath, `${testID}.png`)
+const getSnapshotsPath = (snapshotsPath: string, testID: string) => path.join(snapshotsPath, `${testID}.png`)
 
 const loadFileIfExists = async (filePath: string): Promise<File | null> => {
   try {
@@ -55,7 +55,7 @@ const loadFileIfExists = async (filePath: string): Promise<File | null> => {
 }
 
 const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreationOptions = {}) => {
-  const expectationsPath = shutterOptions.expectationsPath || path.join(testsDirectoryPath, 'snapshots')
+  const snapshotsPath = shutterOptions.snapshotsPath || path.join(testsDirectoryPath, 'snapshots')
   const updateSnapshots = process.argv.includes('--update-shutter-snapshots') || Boolean(process.env.UPDATE_SHUTTER_SNAPSHOTS)
 
   let finishCalled: boolean = false
@@ -72,7 +72,7 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
       const documentHTML = layout(html)
 
       const htmlPage = await createFileFromBuffer(Buffer.from(documentHTML, 'utf8'), 'index.html')
-      const expectationFilePath = getExpectationPath(expectationsPath, testID)
+      const expectationFilePath = getSnapshotsPath(snapshotsPath, testID)
       const expectation = await loadFileIfExists(expectationFilePath)
 
       const unprocessedSnapshot = await createSnapshot(shutterConfig.authtoken, htmlPage, [], { diffOptions, expectation, renderOptions })
