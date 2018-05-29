@@ -13,6 +13,7 @@ export interface TestCase {
 
 export interface TestResult {
   expectationFileNotPresent: boolean,
+  expectationFilePath: string,
   match: boolean,
   similarity: number,
   snapshotID: string,
@@ -44,6 +45,7 @@ export const createResultData = async (test: TestCase): Promise<TestResult> => {
 
   return {
     expectationFileNotPresent: test.expectationFileNotPresent,
+    expectationFilePath: test.expectationFilePath,
     match,
     similarity,
     snapshotID: snapshot.id,

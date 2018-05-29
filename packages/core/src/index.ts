@@ -3,6 +3,7 @@ import { readFile } from 'mz/fs'
 import * as path from 'path'
 import kebabCase from 'dashify'
 import defaultLayout from './default-layout'
+import { openSnapshotSetsCache, updateSnapshotSetCache } from './snapshot-sets-cache'
 import {
   createFileFromBuffer,
   createSnapshot,
@@ -60,6 +61,7 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
 
   let finishCalled: boolean = false
   let tests: TestCase[] = []
+  const snapshotSetsCachePromise = openSnapshotSetsCache()
 
   return {
     async snapshot (testName: string, html: HTMLString, options: SnapshotOptions = {}) {
@@ -110,6 +112,9 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
       if (testsFailed && !updateSnapshots) {
         throw new Error(`Shutter tests failed. Tests:\n${formatTestResultsOverview(results)}\n${inspectionLine}`)
       } else {
+        const snapshotSetsCache = await snapshotSetsCachePromise
+        await updateSnapshotSetCache(snapshotSetsCache, results)
+
         console.log(formatSuccessMessage(results))
         console.log(inspectionLine)
       }
