@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@shutter/api": "^0.0.0",
+    "@shutter/metacache": "^0.0.0",
     "@shutter/shutterrc": "^0.0.0",
     "dashify": "^1.0.0",
     "mkdirp": "^0.5.1",
