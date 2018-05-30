@@ -1,26 +1,10 @@
-import { getSnapshotSetsCachePath, openJSONCache, JSONCache } from '@shutter/metacache'
+import { openSnapshotSetsCache, SnapshotSetsCache } from '@shutter/metacache'
 import { TestResult } from './results'
 
-export type SnapshotSetsCache = JSONCache<SnapshotSetCacheEntry | LatestSnapshotSetEntry>
-
-export interface SnapshotSetCacheEntry {
-  id: string,
-  snapshots: {
-    id: string,
-    snapshotFilePath: string,
-    testName: string
-  }[]
-}
-
-export type LatestSnapshotSetEntry = string
+export { openSnapshotSetsCache }
 
 const dedupe = <Entry>(array: Entry[]): Entry[] => Array.from(new Set(array))
 const lastItem = <Entry>(array: Entry[]) => array[array.length - 1]
-
-export const openSnapshotSetsCache = async (): Promise<SnapshotSetsCache> => {
-  const cache = await openJSONCache(getSnapshotSetsCachePath())
-  return cache
-}
 
 export const updateSnapshotSetCache = async (cache: SnapshotSetsCache, results: TestResult[]) => {
   const snapshotSetIDs = dedupe(results.map(result => result.snapshotSetID))
@@ -31,6 +15,7 @@ export const updateSnapshotSetCache = async (cache: SnapshotSetsCache, results: 
 
     const snapshots = resultsInSnapshotSet.map(result => ({
       id: result.snapshotID,
+      match: result.match,
       snapshotFilePath: result.expectationFilePath,
       testName: result.testName
     }))
