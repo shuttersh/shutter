@@ -3,9 +3,12 @@ import * as fs from 'mz/fs'
 import * as path from 'path'
 import * as os from 'os'
 import createShutter from '../src'
+import { SnapshotSetCacheEntry } from '../src/snapshot-sets-cache'
 import { isDirectory, isFile } from './helpers/fs'
 
 require('dotenv').load()
+
+const dedupe = <Entry>(array: Entry[]): Entry[] => Array.from(new Set(array))
 
 test.serial('snapshot set cache is updated', async t => {
   const shutter = createShutter(__dirname)
@@ -23,8 +26,11 @@ test.serial('snapshot set cache is updated', async t => {
 
   // Test cache item:
 
-  const cacheItem = JSON.parse(await fs.readFile(snapshotSetCacheItemPath, 'utf8'))
+  const cacheItem = JSON.parse(await fs.readFile(snapshotSetCacheItemPath, 'utf8')) as SnapshotSetCacheEntry
   t.is(cacheItem.id, results[0].snapshotSetID)
+
+  const snapshotSetIDs = dedupe(results.map(result => result.snapshotSetID))
+  t.is(snapshotSetIDs.length, 1, `Expected one snapshot set for both test cases, got ${snapshotSetIDs.length}: ${snapshotSetIDs.join(', ')}`)
   t.is(cacheItem.snapshots.length, 2)
 
   t.is(cacheItem.snapshots[0].id, results[0].snapshotID)
