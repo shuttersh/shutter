@@ -11,15 +11,18 @@
     "test": "tslint --project . 'src/**/*.ts' -e '**/*.d.ts'"
   },
   "devDependencies": {
+    "@types/inquirer": "^0.0.41",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
     "typescript": "^2.8.3"
   },
   "dependencies": {
     "@shutter/api": "^0.0.0",
+    "@shutter/metacache": "^0.0.0",
     "@shutter/shutterrc": "^0.0.0",
     "@types/meow": "^4.0.1",
     "@types/superagent": "^3.5.8",
+    "inquirer": "^5.2.0",
     "meow": "^5.0.0",
     "superagent": "^3.8.3"
   }

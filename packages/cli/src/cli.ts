@@ -10,6 +10,9 @@ const cli = meow(`
     $ shutter <command> [<arguments>]
 
   Commands
+    update            Selectively update local snapshots.
+
+  Low-level commands
     pull              Download rendered snapshot or diff.
     snapshot          Upload page for rendering.
 
