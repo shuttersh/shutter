@@ -11,10 +11,6 @@ export const help = `
 
   Options
     --help              Show this help.
-
-  Environment
-    SHUTTER_HOST        Shutter service endpoint to use. For development purposes.
-                        Something like: https://api.shutter.sh/
 `
 
 export const command: CommandFunction = async (args: string[], flags: {}) => {
