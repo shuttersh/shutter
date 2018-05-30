@@ -36,6 +36,11 @@ const getSnapshotIDsToUpdate = async (snapshotSet: SnapshotSetCacheEntry, args: 
       .filter(snapshot => !snapshot.match)
       .map(snapshot => ({ name: snapshot.testName, value: snapshot.id }))
 
+    if (choices.length === 0) {
+      console.error(`No mismatching snapshots in last snapshot set.`)
+      return process.exit()
+    }
+
     const answers = await inquirer.prompt([
       {
         type: 'checkbox',
