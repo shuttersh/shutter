@@ -11,11 +11,9 @@ This monorepo contains the client packages you need to work with the [shutter.sh
 
 The React component snapshotting package. Use it to write visual regression tests for your React UI.
 
-### [@shutter/cli](./packages/cli/README.md)
+### [shutter](./packages/shutter/README.md)
 
-The command line tool. Can be used to upload static pages to the service and retrieve files from it.
-
-Not that interesting yet.
+The command line tool. Use it to update local snapshots when your components change.
 
 
 ## License
