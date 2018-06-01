@@ -45,7 +45,7 @@ const getSnapshotIDsToUpdate = async (snapshotSet: SnapshotSetCacheEntry, args: 
       {
         type: 'checkbox',
         name: 'snapshotIDs',
-        message: 'Which snapshots do you like to update?',
+        message: 'Which snapshots do you want to update? Showing failed tests only.\n',
         choices: choices
       }
     ]) as { snapshotIDs: string[] }
