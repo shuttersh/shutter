@@ -115,7 +115,7 @@ npx shutter update
 You will see an interactive prompt that allows you to select the snapshots you want to update. Select them with Space and confirm with Enter, that's it.
 
 <p class="text-center">
-  <img alt="Shutter CLI in action" src="/images/shutter-cli.png" style="max-width: 100%" />
+  <img alt="Shutter CLI in action" src="./images/shutter-cli.png" style="max-width: 100%" />
 </p>
 
 If you need detailed usage information for the `shutter` command line tool, just run `npx shutter --help`.
