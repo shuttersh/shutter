@@ -17,7 +17,7 @@ yarn add --dev @shutter/core
 
 ## Usage
 
-```js
+```jsx
 import createReactShutter from '@shutter/react'
 import Button from './button'
 
