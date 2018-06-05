@@ -36,7 +36,8 @@ Support for those frameworks is not implemented right now, should be fairly stra
 If you need support for an additional framework urgently, feel free to write a package and open a pull request. Contributions are always welcome.
 
 
-# Further Reading
+# See Also
 
 - [Repository on GitHub](https://github.com/shuttersh/shutter)
-- [Find Shutter on Twitter](https://twitter.com/shuttersh)
+- [Shutter.sh homepage](https://shutter.sh/)
+- [Shutter on Twitter](https://twitter.com/shuttersh)
