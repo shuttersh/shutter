@@ -1,4 +1,4 @@
-remote_theme: andywer/jekyll-docs-theme
+remote_theme: andywer/jekyll-docs-theme@v0.1.2
 
 name: Shutter Packages
 title: Shutter Packages
