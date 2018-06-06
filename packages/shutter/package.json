@@ -1,6 +1,6 @@
 {
   "name": "shutter",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
   "author": "Andy Wermke (https://github.com/andywer)",
   "bin": {
@@ -17,9 +17,9 @@
     "typescript": "^2.8.3"
   },
   "dependencies": {
-    "@shutter/api": "^0.0.0",
-    "@shutter/metacache": "^0.0.0",
-    "@shutter/shutterrc": "^0.0.0",
+    "@shutter/api": "^0.1.0",
+    "@shutter/metacache": "^0.1.0",
+    "@shutter/shutterrc": "^0.1.0",
     "@types/meow": "^4.0.1",
     "@types/superagent": "^3.5.8",
     "inquirer": "^5.2.0",

@@ -1,6 +1,6 @@
 {
   "name": "@shutter/shutterrc",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
   "author": "Andy Wermke (https://github.com/andywer)",
   "main": "./dist/index.js",
