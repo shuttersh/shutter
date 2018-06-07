@@ -1,4 +1,4 @@
-# Shutter.sh Client Packages [![Build Status](https://travis-ci.org/andywer/shutter.svg?branch=master)](https://travis-ci.org/andywer/shutter)
+# Shutter.sh Client Packages [![Build Status](https://travis-ci.org/shuttersh/shutter.svg?branch=master)](https://travis-ci.org/andywer/shutter)
 
 This monorepo contains the client packages you need to work with the [shutter.sh](https://shutter.sh/) visual snapshotting service.
 
