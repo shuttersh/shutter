@@ -14,9 +14,21 @@ title: Home
 </div>
 
 
-# Setup
+# What is Shutter?
 
-Read the [Getting Started](./getting-started) guide. It also covers how to write React component tests.
+[Shutter](https://shutter.sh/) is a service for rendering visual web content snapshots and comparing snapshots.
+
+Use it to write user interface regression tests. You can also use it to easily render HTML, CSS, JavaScript content without a local browser.
+
+
+# Getting Started
+
+Read the [Getting Started](./getting-started) guide.
+
+It covers:
+* Setup
+* Writing React Tests
+* Updating Snapshots
 
 
 # Beyond Testing
@@ -25,8 +37,8 @@ With shutter you cannot only write visual component tests. You can also snapshot
 
 That usage is currently beyond the scope of this document, though. Browse the package readme files if you are interested:
 
-- [`@shutter/core` package](https://github.com/shuttersh/shutter/tree/master/packages/core) - for testing static web content
-- [`@shutter/api` package](https://github.com/shuttersh/shutter/tree/master/packages/api) - for querying the shutter service manually
+* [`@shutter/core` package](https://github.com/shuttersh/shutter/tree/master/packages/core) - for testing static web content
+* [`@shutter/api` package](https://github.com/shuttersh/shutter/tree/master/packages/api) - for querying the shutter service manually
 
 
 # Angular, Vue & others
