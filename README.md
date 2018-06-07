@@ -5,6 +5,13 @@ This monorepo contains the client packages you need to work with the [shutter.sh
 **The shutter.sh service is still in an early stage and invitation-only. You will need an access token to use it. Drop me a line if you are interested.**
 
 
+## Documentation
+
+Find the documentation at <https://shuttersh.github.io/shutter/>. It contains user-centric documentation and the *Getting Started* guide.
+
+Check out the package README files for more detailed technical documentation.
+
+
 ## End user packages
 
 ### [@shutter/react](./packages/react/README.md)
