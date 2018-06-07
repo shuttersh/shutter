@@ -13,7 +13,7 @@ license:
 links:
   header:
     - title: GitHub
-      url: https://github.com/andywer/test
+      url: https://github.com/shuttersh/shutter
 
 exclude:
   - Gemfile
