@@ -119,3 +119,7 @@ const render = (element, baseRender) => {
 
 const shutter = createReactShutter(__dirname, { render })
 ```
+
+## See also
+
+Check out the documentation page at <https://shuttersh.github.io/shutter/>.

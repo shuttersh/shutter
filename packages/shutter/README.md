@@ -19,3 +19,7 @@ To print usage instructions:
 ```sh
 npx shutter --help
 ```
+
+## See also
+
+Check out the documentation page at <https://shuttersh.github.io/shutter/>.

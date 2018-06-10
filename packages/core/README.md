@@ -53,3 +53,7 @@ Check out the [`@shutter/api` documentation](../api/README.md) for the `DiffOpti
 Waits until all rendering tasks have finished, then collects and evaluates the results.
 
 Will throw with a test results summary if snapshots don't match. Prints a success message and an inspection link if everything matched.
+
+## See also
+
+Check out the documentation page at <https://shuttersh.github.io/shutter/>.
