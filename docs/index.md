@@ -1,5 +1,6 @@
 ---
 title: Home
+hide: true
 ---
 
 <div class="jumbotron">
@@ -21,14 +22,16 @@ title: Home
 Use it to write user interface regression tests. You can also use it to easily render HTML, CSS, JavaScript content without a local browser.
 
 
-# Getting Started
+# Setup
 
-Read the [Getting Started](./getting-started) guide.
+Read the [Getting Started](./getting-started) guide to learn how to get going.
 
-It covers:
-* Setup
-* Writing React Tests
-* Updating Snapshots
+
+# React Component Testing
+
+Read the [React Component Testing](./react-tests) guide to learn how to easily visually regression-test React.js components.
+
+It also covers how to use the Shutter CLI tool.
 
 
 # Beyond Testing
