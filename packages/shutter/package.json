@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "license": "MIT",
   "author": "Andy Wermke (https://github.com/andywer)",
+  "description": "Shutter.sh command line client",
+  "homepage": "https://shutter.sh/",
+  "repository": "github:shuttersh/shutter",
   "bin": {
     "shutter": "./dist/cli.js"
   },
