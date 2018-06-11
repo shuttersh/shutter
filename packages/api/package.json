@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "author": "Andy Wermke (https://github.com/andywer)",
+  "repository": "github:shuttersh/shutter",
   "main": "./dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
