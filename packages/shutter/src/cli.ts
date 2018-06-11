@@ -21,6 +21,7 @@ const cli = meow(`
     --version         Show the version.
 `, {
   autoHelp: false,
+  description: false,
   flags: {
     awaitCompletion: {
       type: 'boolean'
