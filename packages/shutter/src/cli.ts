@@ -10,6 +10,7 @@ const cli = meow(`
     $ shutter <command> [<arguments>]
 
   Commands
+    authenticate      Save authentication token.
     update            Selectively update local snapshots.
 
   Low-level commands
@@ -24,6 +25,9 @@ const cli = meow(`
   description: false,
   flags: {
     awaitCompletion: {
+      type: 'boolean'
+    },
+    local: {
       type: 'boolean'
     }
   }
@@ -61,6 +65,13 @@ loadShutterConfig()
       // Cannot use `process.env.SHUTTER_API = process.env.SHUTTER_API || config.serviceHost || undefined`
       // since `undefined` would be casted to string...
       process.env.SHUTTER_API = config.serviceHost
+    }
+  }, error => {
+    if (commandName === 'authenticate') {
+      // Ignore, since `authenticate` is supposed to run before any .shutterrc file is created
+    } else {
+      // Re-throw error
+      throw error
     }
   })
   .then(() => (command as Command).command(args, cli.flags))

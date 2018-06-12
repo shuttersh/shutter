@@ -21,6 +21,10 @@ const isFile = async (filePath: string) => {
   }
 }
 
+export const getUserConfigPath = () => {
+  return path.join(os.homedir(), '.shutterrc')
+}
+
 const getPotentialFilePaths = (directoryPath: string) => {
   const potentialFilePaths: string[] = []
 
@@ -29,7 +33,8 @@ const getPotentialFilePaths = (directoryPath: string) => {
     directoryPath = path.resolve(directoryPath, '..')
   } while (directoryPath !== path.parse(directoryPath).root)
 
-  const userConfigPath = path.join(os.homedir(), '.shutterrc')
+  const userConfigPath = getUserConfigPath()
+
   if (!potentialFilePaths.find(path => path === userConfigPath)) {
     potentialFilePaths.push(userConfigPath)
   }
@@ -54,4 +59,10 @@ export const loadShutterConfig = async (directoryPath: string = process.cwd()): 
   if (!config.authtoken) throw new Error(`Missing mandatory property: 'authtoken' in ${configFilePath}`)
 
   return config
+}
+
+export const updateShutterConfig = async (configFilePath: string, updatedConfig: ShutterConfig) => {
+  await fs.writeFile(configFilePath, ini.stringify(updatedConfig), 'utf8')
+
+  // Nice to have: Only apply a diff, don't overwrite file, to keep comments, whitespaces, etc.
 }

@@ -90,7 +90,7 @@ test('Primary button', async t => {
 First make sure the `shutter` package is installed:
 
 ```sh
-$ npm install shutter
+$ npm install --save-dev shutter
 ```
 
 Change your component that we wrote a test for in the last step, so that the new snapshot won't match the old one anymore. You will see an overview of the failed test cases.

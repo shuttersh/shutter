@@ -12,6 +12,16 @@ import { loadShutterConfig } from '@shutter/shutterrc'
 
 Locate the `.shutterrc` file, read and parse it. Start looking in `directoryPath`.
 
+### `updateShutterConfig(configFilePath: string, updatedConfig: ShutterConfig): Promise<void>`
+
+Write an updated shutter configuration to a `.shutterrc` file. The targetted `.shutterrc` may already exist. If not, it will be created.
+
+Pass the whole configuration, not just the entries to update.
+
+### `getUserConfigPath(): string`
+
+Returns the path to the user-specific `.shutterrc` file.
+
 ## Sample .shutterrc
 
 ```

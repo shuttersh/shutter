@@ -31,13 +31,14 @@ Use your favorite test runner to write the tests, like Jest, AVA, Mocha, Tape ..
 
 # Authentication
 
-Create a `.shutterrc` file, either in your project directory or globally in your user's home directory.
+Log in to your account using the authentication token you received with your [invitation](#sign-up):
 
-Add your authentication token you received with your [invitation](#sign-up):
+```sh
+# `npx` comes with npm and will run shutter from ./node_modules/.bin/shutter
+$ npx shutter authenticate YOURTOKENHERE
+```
 
-```
-authtoken=abcdef6789
-```
+Your authentication token has now been saved to a `.shutterrc` file and we are ready to get productive.
 
 
 # First Test
