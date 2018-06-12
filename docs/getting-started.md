@@ -40,6 +40,10 @@ $ npx shutter authenticate YOURTOKENHERE
 
 Your authentication token has now been saved to a `.shutterrc` file and we are ready to get productive.
 
+<div class="alert alert-warning" markdown="1">
+**Security Note:** Keep your authentication token private. Don't commit it and don't share it, treat it like a password.
+</div>
+
 
 # First Test
 
