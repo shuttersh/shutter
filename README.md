@@ -24,7 +24,7 @@ The bare framework-agnostic HTML snapshotting package. It is the base of `@shutt
 
 ### [shutter](./packages/shutter/README.md)
 
-The command line tool. Use it to update local snapshots when your components change.
+The command line tool. Use it to log in to your account in the terminal. Allows updating the local snapshots easily when your components change.
 
 
 ## License
