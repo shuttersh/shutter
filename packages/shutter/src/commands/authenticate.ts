@@ -47,4 +47,8 @@ export const command: CommandFunction = async (args: string[], flags: Flags) => 
 
   await updateShutterConfig(configFilePath, { ...previousConfig, authtoken: authToken })
   console.log(`Updated shutter config file: ${path.resolve(configFilePath)}`)
+
+  if (flags.local) {
+    console.log(`Security note: Don't forget to add .shutterrc file to your .gitignore.`)
+  }
 }
