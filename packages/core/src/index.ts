@@ -61,11 +61,13 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
 
   let finishCalled: boolean = false
   let tests: TestCase[] = []
+
+  const shutterConfigPromise = loadShutterConfig()
   const snapshotSetsCachePromise = openSnapshotSetsCache()
 
   return {
     async snapshot (testName: string, html: HTMLString, options: SnapshotOptions = {}) {
-      const shutterConfig = await loadShutterConfig()
+      const shutterConfig = await shutterConfigPromise
       const layout = shutterOptions.layout || options.layout || defaultLayout
       const diffOptions = { ...shutterOptions.diffOptions, ...options.diffOptions }
       const renderOptions = { ...defaultComponentRenderOptions, ...shutterOptions.renderOptions, ...options.renderOptions }
