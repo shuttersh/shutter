@@ -1,6 +1,6 @@
 {
   "name": "@shutter/core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "author": "Andy Wermke (https://github.com/andywer)",
   "repository": "github:shuttersh/shutter",
@@ -12,9 +12,9 @@
     "posttest": "tslint --project . 'src/**/*.ts' 'test/**/*.ts' -e '**/*.d.ts'"
   },
   "dependencies": {
-    "@shutter/api": "^0.1.0",
-    "@shutter/metacache": "^0.1.0",
-    "@shutter/shutterrc": "^0.1.0",
+    "@shutter/api": "^0.2.0",
+    "@shutter/metacache": "^0.2.0",
+    "@shutter/shutterrc": "^0.2.0",
     "dashify": "^1.0.0",
     "mkdirp": "^0.5.1",
     "mz": "^2.7.0"
