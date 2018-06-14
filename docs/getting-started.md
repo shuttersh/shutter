@@ -108,7 +108,7 @@ The output should look similar to that:
 
 ```
 Shutter ran 1 tests ✔
-Inspect the snapshots at <https://app.shutter.sh/snapshot-set/KyCa50DaCBqI>
+Inspect the snapshots at <https://shutter.sh/snapshot-set/KyCa50DaCBqI>
 ```
 
 Follow the link in the console output to inspect the rendered button in your browser. Also note that a file `snapshots/button.png` has just been created. It is a local copy of the rendered button snapshot that will be used for future regression testing.

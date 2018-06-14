@@ -24,8 +24,7 @@ export interface TestResult {
 const mkdirp = (dirPath: string) => new Promise((resolve, reject) => mkdirpCallback(dirPath, error => error ? reject(error) : resolve()))
 
 export const createInspectionURL = (result: TestResult) => {
-  const shutterAppHost = process.env.SHUTTER_APP || 'https://app.shutter.sh/'
-  return new URL(`/snapshot-set/${result.snapshotSetID}`, shutterAppHost).toString()
+  return new URL(`/snapshot-set/${result.snapshotSetID}`, 'https://shutter.sh/').toString()
 }
 
 export const syncSnapshot = async (test: TestCase, updateSnapshots: boolean) => {
