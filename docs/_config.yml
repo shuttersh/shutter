@@ -14,6 +14,8 @@ links:
   header:
     - title: GitHub
       url: https://github.com/shuttersh/shutter
+    - title: Shutter.sh
+      url: https://shutter.sh/
 
 exclude:
   - Gemfile
