@@ -4,7 +4,7 @@ hide: true
 ---
 
 <div class="jumbotron">
-  <h1>Shutter packages</h1>
+  <h1 class="notoc">Shutter packages</h1>
   <p class="lead">
     This is the documentation of the <a href="https://shutter.sh">shutter.sh</a> client packages.<br />
     Write visual user interface tests or render arbitrary web content.
