@@ -1,4 +1,4 @@
-# @shutter/react
+# @shutter/react [![NPM Version](https://img.shields.io/npm/v/@shutter/react.svg)](https://www.npmjs.com/package/@shutter/react)
 
 React.js visual snapshot testing library using [shutter.sh](https://shutter.sh).
 

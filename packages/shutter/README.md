@@ -1,4 +1,4 @@
-# shutter
+# shutter [![NPM Version](https://img.shields.io/npm/v/shutter.svg)](https://www.npmjs.com/package/shutter)
 
 CLI tool to use the [shutter.sh](https://shutter.sh/) service.
 

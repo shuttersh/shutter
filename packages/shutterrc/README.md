@@ -1,4 +1,4 @@
-# @shutter/shutterrc
+# @shutter/shutterrc [![NPM Version](https://img.shields.io/npm/v/@shutter/shutterrc.svg)](https://www.npmjs.com/package/@shutter/shutterrc)
 
 Locate and parse the shutter configuration file, `.shutterrc`. Will start looking for `.shutterrc` in the currently working directory, then traverse its parents and finally try the user's home directory.
 
