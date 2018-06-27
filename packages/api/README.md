@@ -1,4 +1,4 @@
-# @shutter/api
+# @shutter/api [![NPM Version](https://img.shields.io/npm/v/@shutter/api.svg)](https://www.npmjs.com/package/@shutter/api)
 
 [Shutter.sh](https://shutter.sh/) API client package.
 

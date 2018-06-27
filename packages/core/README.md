@@ -1,4 +1,4 @@
-# @shutter/core
+# @shutter/core [![NPM Version](https://img.shields.io/npm/v/@shutter/core.svg)](https://www.npmjs.com/package/@shutter/core)
 
 Core testing library for [shutter.sh](https://shutter.sh). This is the framework-agnostic base code that the framework-specific packages are based on.
 

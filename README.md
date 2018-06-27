@@ -2,7 +2,9 @@
 
 This monorepo contains the client packages you need to work with the [shutter.sh](https://shutter.sh/) visual snapshotting service.
 
-**The shutter.sh service is still in an early stage and invitation-only. You will need an access token to use it. Drop me a line if you are interested.**
+[**Homepage**](https://shutter.sh/)<br />
+[**Documentation**](https://shuttersh.github.io/shutter/)<br />
+[**Dashboard**](https://shutter.sh/dashboard)
 
 
 ## Documentation
