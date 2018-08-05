@@ -107,4 +107,22 @@ test.serial('can retrieve metadata from Circle CI env', async t => {
   } as CollectedMetadata)
 })
 
-test.serial.todo('can retrieve metadata from Jenkins CI env')
+test.serial('can retrieve metadata from Jenkins CI env', async t => {
+  const envVars = {
+    JENKINS_URL: 'https://jenkins.example.com/',
+    GIT_BRANCH: 'feature/1-do-stuff',
+    GIT_COMMIT: '1234ef',
+    GIT_URL: 'git@github.com:octocat/Hello-World.git'
+  }
+
+  const metadata = await withEnvironment(envVars, async () => {
+    const dirPath = tmp.dirSync().name
+    return collectMetadata(dirPath)
+  })
+
+  t.deepEqual(metadata, {
+    'repo:branch': 'feature/1-do-stuff',
+    'repo:origin': 'github:octocat/Hello-World',
+    'repo:revision': '1234ef'
+  } as CollectedMetadata)
+})

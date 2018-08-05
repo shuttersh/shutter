@@ -1,6 +1,7 @@
 import createDebugLogger from 'debug'
 import circleCI from './collectors/circle-ci'
 import gitlabCI from './collectors/gitlab-ci'
+import jenkinsCI from './collectors/jenkins-ci'
 import travisCI from './collectors/travis-ci'
 import git from './collectors/git'
 import npm from './collectors/npm'
@@ -14,6 +15,7 @@ const collectors: Collector[] = [
   // CI collectors:
   circleCI,
   gitlabCI,
+  jenkinsCI,
   travisCI,
 
   // Generic collectors:
