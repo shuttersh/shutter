@@ -1,5 +1,6 @@
 import createDebugLogger from 'debug'
 import circleCI from './collectors/circle-ci'
+import travisCI from './collectors/travis-ci'
 import git from './collectors/git'
 import npm from './collectors/npm'
 import { Collector, CollectedMetadata } from './types'
@@ -14,7 +15,8 @@ const genericCollectors: Collector[] = [
 ]
 
 const ciCollectors: Collector[] = [
-  circleCI
+  circleCI,
+  travisCI
 ]
 
 function filterFalsyValues<T extends { [key: string]: any }> (input: T): Partial<T> {
