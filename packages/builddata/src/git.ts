@@ -15,7 +15,8 @@ export async function canUseGit (dirPath: string) {
 
 export async function queryBranchName (dirPath: string) {
   const { stdout } = await execa('git', ['rev-parse', '--abbrev-ref', 'HEAD'], { cwd: dirPath })
-  return stdout.trim()
+  const branchName = stdout.trim()
+  return branchName !== 'HEAD' ? branchName : null
 }
 
 export async function queryRemoteURL (dirPath: string) {
