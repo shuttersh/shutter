@@ -1,0 +1,31 @@
+{
+  "name": "@shutter/builddata",
+  "version": "0.2.0",
+  "license": "MIT",
+  "author": "Andy Wermke (https://github.com/andywer)",
+  "repository": "github:shuttersh/shutter",
+  "main": "./dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "ava-ts",
+    "posttest": "tslint --project . 'src/**/*.ts' 'test/**/*.ts' -e '**/*.d.ts'"
+  },
+  "dependencies": {
+    "debug": "^3.1.0",
+    "execa": "^0.10.0",
+    "git-links": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/debug": "^0.0.30",
+    "@types/execa": "^0.9.0",
+    "@types/tmp": "^0.0.33",
+    "ava": "^0.25.0",
+    "ava-ts": "^0.25.0",
+    "tmp": "^0.0.33",
+    "ts-node": "^6.0.3",
+    "tslint": "^5.10.0",
+    "tslint-config-standard": "^7.0.0",
+    "typescript": "^2.8.3"
+  }
+}
