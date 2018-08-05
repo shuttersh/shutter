@@ -1,5 +1,6 @@
 import createDebugLogger from 'debug'
 import circleCI from './collectors/circle-ci'
+import gitlabCI from './collectors/gitlab-ci'
 import travisCI from './collectors/travis-ci'
 import git from './collectors/git'
 import npm from './collectors/npm'
@@ -12,6 +13,7 @@ const debug = createDebugLogger('shutter:builddata')
 const collectors: Collector[] = [
   // CI collectors:
   circleCI,
+  gitlabCI,
   travisCI,
 
   // Generic collectors:

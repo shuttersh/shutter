@@ -56,6 +56,30 @@ test.serial('can retrieve metadata in Travis CI env', async t => {
   } as CollectedMetadata)
 })
 
-test.serial.todo('can retrieve metadata from GitLab repo in GitLab env, just committed & tagged')
+test.serial('can retrieve metadata from GitLab env', async t => {
+  const envVars = {
+    CI: 'true',
+    GITLAB_CI: 'true',
+    CI_COMMIT_REF_NAME: 'feature/1-do-stuff',
+    CI_COMMIT_SHA: '1234ef',
+    CI_COMMIT_TAG: 'v0.0.0',
+    CI_COMMIT_TITLE: 'Test commit',
+    CI_REPOSITORY_URL: 'git@gitlab.com:gitlab-org/gitlab-ce.git'
+  }
+
+  const metadata = await withEnvironment(envVars, async () => {
+    const dirPath = tmp.dirSync().name
+    return collectMetadata(dirPath)
+  })
+
+  t.deepEqual(metadata, {
+    'repo:branch': 'feature/1-do-stuff',
+    'repo:commitmsg': 'Test commit',
+    'repo:origin': 'gitlab:gitlab-org/gitlab-ce',
+    'repo:revision': '1234ef',
+    'repo:tag': 'v0.0.0'
+  } as CollectedMetadata)
+})
+
 test.serial.todo('can retrieve metadata from BitBucket repo in Circle CI env')
 test.serial.todo('can retrieve metadata when not in a git repo, in Jenkins CI env')
