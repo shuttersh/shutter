@@ -7,9 +7,20 @@ const createServiceURL = (path: string) => {
   return new URL(path, shutterAPIHost).toString()
 }
 
+export interface Labels {
+  'package:name'?: string,
+  'repo:branch'?: string,
+  'repo:commitmsg'?: string,
+  'repo:origin'?: string,
+  'repo:pullreq'?: string,
+  'repo:revision'?: string,
+  'repo:tag'?: string
+}
+
 export interface SnapshotCreationOptions {
   expectation?: File | null,
   diffOptions?: DiffOptions,
+  labels?: Labels,
   renderOptions?: RenderOptions
 }
 
@@ -43,6 +54,9 @@ export const createSnapshot = async (authToken: string, page: File, pageAssets: 
   }
   if (options.renderOptions) {
     req.field('renderOptions', JSON.stringify(options.renderOptions))
+  }
+  if (options.labels) {
+    req.field('labels', JSON.stringify(options.labels))
   }
 
   for (const asset of pageAssets) {
