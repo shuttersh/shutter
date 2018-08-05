@@ -10,6 +10,7 @@ const gitlabCI: Collector = {
 
   async collect () {
     return {
+      'ci': 'true',
       'repo:branch': process.env['CI_COMMIT_REF_NAME'],
       'repo:commitmsg': process.env['CI_COMMIT_TITLE'],
       'repo:origin': process.env['CI_REPOSITORY_URL'] ? getShortLink(process.env['CI_REPOSITORY_URL'] as string) : undefined,

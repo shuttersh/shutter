@@ -8,6 +8,7 @@ const createServiceURL = (path: string) => {
 }
 
 export interface Labels {
+  'ci'?: 'true',
   'package:name'?: string,
   'repo:branch'?: string,
   'repo:commitmsg'?: string,

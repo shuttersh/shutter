@@ -26,6 +26,7 @@ const circleCI: Collector = {
 
   async collect () {
     return {
+      'ci': 'true',
       'repo:branch': process.env.CIRCLE_BRANCH,
       'repo:origin': process.env.CIRCLE_REPOSITORY_URL ? getShortLink(process.env.CIRCLE_REPOSITORY_URL) : undefined,
       'repo:pullreq': (process.env.CIRCLE_PULL_REQUEST ? getPullReqNo(process.env.CIRCLE_PULL_REQUEST) : process.env.CIRCLE_PR_NUMBER) || undefined,

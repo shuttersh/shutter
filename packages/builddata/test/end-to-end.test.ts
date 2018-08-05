@@ -47,6 +47,7 @@ test.serial('can retrieve metadata in Travis CI env', async t => {
   })
 
   t.deepEqual(metadata, {
+    'ci': 'true',
     'repo:branch': 'feature/1-do-stuff',
     'repo:commitmsg': 'Test commit',
     'repo:origin': 'github:octocat/Hello-World',
@@ -73,6 +74,7 @@ test.serial('can retrieve metadata from GitLab env', async t => {
   })
 
   t.deepEqual(metadata, {
+    'ci': 'true',
     'repo:branch': 'feature/1-do-stuff',
     'repo:commitmsg': 'Test commit',
     'repo:origin': 'gitlab:gitlab-org/gitlab-ce',
@@ -99,6 +101,7 @@ test.serial('can retrieve metadata from Circle CI env', async t => {
   })
 
   t.deepEqual(metadata, {
+    'ci': 'true',
     'repo:branch': 'feature/1-do-stuff',
     'repo:origin': 'github:octocat/Hello-World',
     'repo:pullreq': '1',
@@ -121,6 +124,7 @@ test.serial('can retrieve metadata from Jenkins CI env', async t => {
   })
 
   t.deepEqual(metadata, {
+    'ci': 'true',
     'repo:branch': 'feature/1-do-stuff',
     'repo:origin': 'github:octocat/Hello-World',
     'repo:revision': '1234ef'

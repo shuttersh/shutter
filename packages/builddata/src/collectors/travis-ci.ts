@@ -9,6 +9,7 @@ const travisCI: Collector = {
 
   async collect () {
     return {
+      'ci': 'true',
       'repo:branch': process.env['TRAVIS_BRANCH'],
       'repo:commitmsg': process.env['TRAVIS_COMMIT_MESSAGE'],
       'repo:origin': process.env['TRAVIS_REPO_SLUG'] ? `github:${process.env['TRAVIS_REPO_SLUG']}` : undefined,
