@@ -16,6 +16,7 @@ Sends an HTML document and additional assets to the shutter.sh service for rende
 interface SnapshotCreationOptions {
   expectation?: File | null,
   diffOptions?: DiffOptions,
+  labels?: Labels,
   renderOptions?: RenderOptions
 }
 

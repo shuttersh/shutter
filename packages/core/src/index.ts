@@ -1,3 +1,4 @@
+import { collectMetadata } from '@shutter/builddata'
 import { loadShutterConfig } from '@shutter/shutterrc'
 import { readFile } from 'mz/fs'
 import * as path from 'path'
@@ -62,12 +63,15 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
   let finishCalled: boolean = false
   let tests: TestCase[] = []
 
+  const metadataCollectionPromise = collectMetadata()
   const shutterConfigPromise = loadShutterConfig()
   const snapshotSetsCachePromise = openSnapshotSetsCache()
 
   return {
     async snapshot (testName: string, html: HTMLString, options: SnapshotOptions = {}) {
+      const labels = await metadataCollectionPromise
       const shutterConfig = await shutterConfigPromise
+
       const layout = shutterOptions.layout || options.layout || defaultLayout
       const diffOptions = { ...shutterOptions.diffOptions, ...options.diffOptions }
       const renderOptions = { ...defaultComponentRenderOptions, ...shutterOptions.renderOptions, ...options.renderOptions }
@@ -79,7 +83,7 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
       const expectationFilePath = getSnapshotsPath(snapshotsPath, testID)
       const expectation = await loadFileIfExists(expectationFilePath)
 
-      const unprocessedSnapshot = await createSnapshot(shutterConfig.authtoken, htmlPage, [], { diffOptions, expectation, renderOptions })
+      const unprocessedSnapshot = await createSnapshot(shutterConfig.authtoken, htmlPage, [], { diffOptions, expectation, labels, renderOptions })
       const processedSnapshotPromise = retrieveProcessedSnapshot(unprocessedSnapshot.id)
 
       tests.push({
