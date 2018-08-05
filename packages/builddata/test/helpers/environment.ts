@@ -3,12 +3,12 @@ interface EnvVars {
 }
 
 export async function withEnvironment (envVars: EnvVars, callback: () => any) {
+  const originalEnv = process.env
+
   try {
-    Object.assign(process.env, envVars)
+    process.env = Object.assign({}, process.env, envVars)
     return await callback()
   } finally {
-    for (const varName of Object.keys(envVars)) {
-      delete process.env[varName]
-    }
+    process.env = originalEnv
   }
 }

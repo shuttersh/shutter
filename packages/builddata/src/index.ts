@@ -9,14 +9,14 @@ export { CollectedMetadata }
 
 const debug = createDebugLogger('shutter:builddata')
 
-const genericCollectors: Collector[] = [
+const collectors: Collector[] = [
+  // CI collectors:
+  circleCI,
+  travisCI,
+
+  // Generic collectors:
   git,
   npm
-]
-
-const ciCollectors: Collector[] = [
-  circleCI,
-  travisCI
 ]
 
 function filterFalsyValues<T extends { [key: string]: any }> (input: T): Partial<T> {
@@ -44,18 +44,7 @@ async function collectIfApplicable (collector: Collector, dirPath: string) {
 export async function collectMetadata (dirPath: string = process.cwd()): Promise<CollectedMetadata> {
   let collected: CollectedMetadata = {}
 
-  const genericMetadataCollections = await Promise.all(
-    genericCollectors.map(collector => collectIfApplicable(collector, dirPath))
-  )
-
-  for (const genericMetadata of genericMetadataCollections) {
-    collected = {
-      ...collected,
-      ...genericMetadata
-    }
-  }
-
-  for (const collector of ciCollectors) {
+  for (const collector of collectors) {
     if (!await collector.testEnvironment(dirPath)) continue
 
     collected = {
