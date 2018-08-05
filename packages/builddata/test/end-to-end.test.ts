@@ -81,5 +81,30 @@ test.serial('can retrieve metadata from GitLab env', async t => {
   } as CollectedMetadata)
 })
 
-test.serial.todo('can retrieve metadata from BitBucket repo in Circle CI env')
-test.serial.todo('can retrieve metadata when not in a git repo, in Jenkins CI env')
+test.serial('can retrieve metadata from Circle CI env', async t => {
+  const envVars = {
+    CI: 'true',
+    CIRCLECI: 'true',
+    CIRCLE_BRANCH: 'feature/1-do-stuff',
+    CIRCLE_PULL_REQUEST: 'https://github.com/octocat/Hello-World/pull/1',
+    CIRCLE_PR_NUMBER: '1',
+    CIRCLE_REPOSITORY_URL: 'git@github.com:octocat/Hello-World.git',
+    CIRCLE_SHA1: '1234ef',
+    CIRCLE_TAG: 'v0.0.0'
+  }
+
+  const metadata = await withEnvironment(envVars, async () => {
+    const dirPath = tmp.dirSync().name
+    return collectMetadata(dirPath)
+  })
+
+  t.deepEqual(metadata, {
+    'repo:branch': 'feature/1-do-stuff',
+    'repo:origin': 'github:octocat/Hello-World',
+    'repo:pullreq': '1',
+    'repo:revision': '1234ef',
+    'repo:tag': 'v0.0.0'
+  } as CollectedMetadata)
+})
+
+test.serial.todo('can retrieve metadata from Jenkins CI env')
