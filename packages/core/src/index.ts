@@ -69,9 +69,10 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
 
   return {
     async snapshot (testName: string, html: HTMLString, options: SnapshotOptions = {}) {
-      const labels = await metadataCollectionPromise
+      const testRunLabels = await metadataCollectionPromise
       const shutterConfig = await shutterConfigPromise
 
+      const labels = { ...testRunLabels, 'test:name': testName }
       const layout = shutterOptions.layout || options.layout || defaultLayout
       const diffOptions = { ...shutterOptions.diffOptions, ...options.diffOptions }
       const renderOptions = { ...defaultComponentRenderOptions, ...shutterOptions.renderOptions, ...options.renderOptions }
