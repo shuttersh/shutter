@@ -11,7 +11,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "tslint --project . 'src/**/*.ts' -e '**/*.d.ts'"
+    "test": "tslint --project . 'src/**/*.ts' -e '**/*.d.ts'",
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "@types/inquirer": "^0.0.41",

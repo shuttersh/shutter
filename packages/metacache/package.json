@@ -8,7 +8,8 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "tslint --project . 'src/**/*.ts' -e '**/*.d.ts'"
+    "test": "tslint --project . 'src/**/*.ts' -e '**/*.d.ts'",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
     "mkdirp": "^0.5.1",

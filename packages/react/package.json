@@ -9,7 +9,8 @@
   "scripts": {
     "build": "tsc",
     "test": "ava-ts",
-    "posttest": "tslint --project . 'src/**/*.ts' 'test/**/*.ts' -e '**/*.d.ts'"
+    "posttest": "tslint --project . 'src/**/*.ts' 'test/**/*.ts' -e '**/*.d.ts'",
+    "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
     "react": "*",
