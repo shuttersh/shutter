@@ -17,7 +17,7 @@
     "react-dom": "*"
   },
   "dependencies": {
-    "@shutter/core": "^0.3.1",
+    "@shutter/core": "^0.3.2",
     "@types/react": "^16.3.14",
     "@types/react-dom": "^16.0.5"
   },
