@@ -38,16 +38,16 @@ It will also print an inspection URL which links to the shutter.sh web app where
 
 You can pass a custom render function to `createReactShutter()` or `shutter.snapshot()`. Use it wrap your components in other components, like context providers.
 
-The render function takes a React element and returns a string of static HTML. The default render function is just a thin wrapper around `ReactDOMServer.renderToStaticMarkup()`.
+The render function takes a React element and returns a promise resolving to a string of static HTML. The default render function, exported as `renderComponent`, is just a thin wrapper around `ReactDOMServer.renderToStaticMarkup()`.
 
 This example sets up a shutter instance that will wrap the components in a Redux store provider:
 
 ```jsx
-import createReactShutter from '@shutter/react'
+import createReactShutter, { renderComponent as baseRender } from '@shutter/react'
 import { Provider } from 'react-redux'
 import store from './store'
 
-const render = (element, baseRender) => {
+const render = (element) => {
   return baseRender(
     <Provider store={store}>
       {element}

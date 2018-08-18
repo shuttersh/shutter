@@ -10,6 +10,11 @@ export { TestResult }
 
 export type HTMLString = string
 export type BuiltinRenderFunction = (reactElement: ReactElement<any>) => Promise<HTMLString>
+
+/**
+ * The 2nd argument to the function (`originalRender`) is deprecated and will be removed soon.
+ * Import the `renderComponent()` function instead.
+ */
 export type RenderFunction = (reactElement: ReactElement<any>, originalRender: BuiltinRenderFunction) => Promise<HTMLString>
 
 export interface ShutterCreationOptions extends CoreShutterCreationOptions {
@@ -20,7 +25,7 @@ export interface SnapshotOptions extends CoreSnapshotOptions {
   render?: RenderFunction
 }
 
-const defaultRender = (element: ReactElement<any>): Promise<HTMLString> => {
+export const renderComponent = (element: ReactElement<any>): Promise<HTMLString> => {
   return Promise.resolve(renderToStaticMarkup(element))
 }
 
@@ -31,9 +36,9 @@ const createReactShutter = (testsDirectoryPath: string, shutterOptions: ShutterC
     ...shutter,
 
     async snapshot (testName: string, element: ReactElement<any>, options: SnapshotOptions = {}) {
-      const render = options.render || shutterOptions.render || defaultRender
+      const render = options.render || shutterOptions.render || renderComponent
 
-      const html = await render(element, defaultRender)
+      const html = await render(element, renderComponent)
       return shutter.snapshot(testName, html, options)
     }
   }
