@@ -58,7 +58,7 @@ Creates a shutter instance. You need to pass your testing directory (can usually
 ```ts
 interface ShutterOptions {
   layout?: (htmlContent: string) => string,
-  render?: (reactElement: ReactElement<any>, originalRender: function) => Promise<string>,
+  render?: (reactElement: ReactElement<any>) => Promise<string>,
   snapshotsPath?: string,
   diffOptions?: DiffOptions,
   renderOptions?: RenderOptions
@@ -76,7 +76,7 @@ The returned promise will resolve once the upload is done, but before the render
 ```ts
 interface SnapshotOptions {
   layout?: (htmlContent: string) => string,
-  render?: (reactElement: ReactElement<any>, originalRender: function) => Promise<string>,
+  render?: (reactElement: ReactElement<any>) => Promise<string>,
   diffOptions?: DiffOptions,
   renderOptions?: RenderOptions
 }
@@ -94,22 +94,22 @@ Will throw with a test results summary if snapshots don't match. Prints a succes
 
 ### Custom render function
 
-You can pass a custom render function to `createReactShutter()` or `shutter.snapshot()`. The render function takes a React element and returns a string of static HTML. The default render function is just a thin wrapper around `ReactDOMServer.renderToStaticMarkup()`.
+You can pass a custom render function to `createReactShutter()` or `shutter.snapshot()`. The render function takes a React element and returns a promise resolving to a string of static HTML. The default render function, exported as `renderComponent`, is just a thin wrapper around `ReactDOMServer.renderToStaticMarkup()`.
 
 ```ts
 export type HTMLString = string
 export type BuiltinRenderFunction = (reactElement: ReactElement<any>) => Promise<HTMLString>
-export type RenderFunction = (reactElement: ReactElement<any>, originalRender: BuiltinRenderFunction) => Promise<HTMLString>
+export type RenderFunction = (reactElement: ReactElement<any>) => Promise<HTMLString>
 ```
 
 Use it wrap your components in other components, like context providers:
 
 ```jsx
 import { Provider } from 'react-redux'
-import createReactShutter from '@shutter/react'
+import createReactShutter, { renderComponent as baseRender } from '@shutter/react'
 import store from './store'
 
-const render = (element, baseRender) => {
+const render = (element) => {
   return baseRender(
     <Provider store={store}>
       {element}
