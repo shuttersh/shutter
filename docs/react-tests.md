@@ -19,11 +19,10 @@ describe('Button component', function () {
   })
 
   it('matches visual snapshot', async function () {
-    await shutter.snapshot('Button default', <Button label='Click me' />)
-  })
-
-  it('with primary style matches visual snapshot', async function () {
-    await shutter.snapshot('Button primary', <Button primary label='Click me' />)
+    await Promise.all([
+      shutter.snapshot('Default Button', <Button label='Click me' />),
+      shutter.snapshot('Primary Button', <Button primary label='Click me' />)
+    ])
   })
 })
 ```
@@ -75,12 +74,12 @@ test.after(async () => {
   await shutter.finish()
 })
 
-test('Default button', async t => {
-  await shutter.snapshot('Default button', <Button label='Click me' />)
-})
-
-test('Primary button', async t => {
-  await shutter.snapshot('Primary button', <Button primary label='Click me' />)
+test('Button', async t => {
+  await Promise.all([
+    shutter.snapshot('Default button', <Button label='Click me' />),
+    shutter.snapshot('Primary button', <Button primary label='Click me' />)
+  ])
+  t.pass()
 })
 ```
 

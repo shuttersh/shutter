@@ -20,9 +20,11 @@ const render = async (element: React.ReactElement<any>, originalRender: BuiltinR
 test('Material UI components', async t => {
   const shutter = createReactShutter(__dirname, { render })
 
-  await shutter.snapshot('AppBar', <AppBar title='Demo AppBar' />)
-  await shutter.snapshot('RaisedButton', <RaisedButton label='Default raised button' />)
-  await shutter.snapshot('Primary RaisedButton', <RaisedButton label='Primary raised button' primary />)
+  await Promise.all([
+    shutter.snapshot('AppBar', <AppBar title='Demo AppBar' />),
+    shutter.snapshot('RaisedButton', <RaisedButton label='Default raised button' />),
+    shutter.snapshot('Primary RaisedButton', <RaisedButton label='Primary raised button' primary />)
+  ])
 
   await shutter.finish()
   t.pass()
