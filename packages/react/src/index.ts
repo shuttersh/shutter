@@ -18,6 +18,7 @@ export type BuiltinRenderFunction = (reactElement: ReactElement<any>) => Promise
 export type RenderFunction = (reactElement: ReactElement<any>, originalRender: BuiltinRenderFunction) => Promise<HTMLString>
 
 export interface ShutterCreationOptions extends CoreShutterCreationOptions {
+  head?: React.ReactElement<any>,
   render?: RenderFunction
 }
 
@@ -30,7 +31,11 @@ export const renderComponent = (element: ReactElement<any>): Promise<HTMLString>
 }
 
 const createReactShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreationOptions = {}) => {
-  const shutter = createShutter(testsDirectoryPath, shutterOptions)
+  const shutterCoreOptions = {
+    ...shutterOptions,
+    head: shutterOptions.head ? renderToStaticMarkup(shutterOptions.head) : ''
+  }
+  const shutter = createShutter(testsDirectoryPath, shutterCoreOptions)
 
   return {
     ...shutter,

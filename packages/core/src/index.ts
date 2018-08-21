@@ -25,16 +25,18 @@ import {
 
 export { TestResult }
 export type HTMLString = string
+export type Layout = (content: HTMLString, head: HTMLString) => HTMLString
 
 export interface ShutterCreationOptions {
-  layout?: (content: HTMLString) => HTMLString,
+  head?: HTMLString,
+  layout?: Layout,
   snapshotsPath?: string,
   diffOptions?: DiffOptions,
   renderOptions?: RenderOptions
 }
 
 export interface SnapshotOptions {
-  layout?: (content: HTMLString) => HTMLString,
+  layout?: Layout,
   diffOptions?: DiffOptions,
   renderOptions?: RenderOptions
 }
@@ -78,7 +80,7 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
       const renderOptions = { ...defaultComponentRenderOptions, ...shutterOptions.renderOptions, ...options.renderOptions }
 
       const testID = kebabCase(testName)
-      const documentHTML = layout(html)
+      const documentHTML = layout(html, shutterOptions.head || '')
 
       const htmlPage = await createFileFromBuffer(Buffer.from(documentHTML, 'utf8'), 'index.html')
       const expectationFilePath = getSnapshotsPath(snapshotsPath, testID)

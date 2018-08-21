@@ -56,6 +56,7 @@ Creates a shutter instance. You need to pass your testing directory (can usually
 
 ```ts
 interface ShutterOptions {
+  head?: ReactElement<any>,
   layout?: (htmlContent: string) => string,
   render?: (reactElement: ReactElement<any>) => Promise<string>,
   snapshotsPath?: string,

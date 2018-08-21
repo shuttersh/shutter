@@ -21,7 +21,8 @@ Creates a shutter instance. You need to pass your testing directory (can usually
 
 ```ts
 interface ShutterOptions {
-  layout?: (htmlContent: string) => string,
+  head?: string,
+  layout?: (htmlContent: string, headContent: string) => string,
   snapshotsPath?: string,
   diffOptions?: DiffOptions,
   renderOptions?: RenderOptions
