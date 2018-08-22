@@ -8,6 +8,7 @@ import { openSnapshotSetsCache, updateSnapshotSetCache } from './snapshot-sets-c
 import {
   createFileFromBuffer,
   createSnapshot,
+  loadFileFromDisk,
   retrieveProcessedSnapshot,
   File,
   DiffOptions,
@@ -23,11 +24,12 @@ import {
   TestResult
 } from './results'
 
-export { TestResult }
+export { File, TestResult }
 export type HTMLString = string
 export type Layout = (content: HTMLString, head: HTMLString) => HTMLString
 
 export interface ShutterCreationOptions {
+  files?: File[],
   head?: HTMLString,
   layout?: Layout,
   snapshotsPath?: string,
@@ -47,8 +49,9 @@ export const defaultComponentRenderOptions = {
 }
 
 const getSnapshotsPath = (snapshotsPath: string, testID: string) => path.join(snapshotsPath, `${testID}.png`)
+const shouldUpdateSnapshots = () => process.argv.includes('--update-shutter-snapshots') || Boolean(process.env.UPDATE_SHUTTER_SNAPSHOTS)
 
-const loadFileIfExists = async (filePath: string): Promise<File | null> => {
+async function loadFileIfExists (filePath: string): Promise<File | null> {
   try {
     const fileContent = await readFile(filePath)
     return createFileFromBuffer(fileContent, path.basename(filePath))
@@ -58,9 +61,9 @@ const loadFileIfExists = async (filePath: string): Promise<File | null> => {
   }
 }
 
-const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreationOptions = {}) => {
+function createShutter (testsDirectoryPath: string, shutterOptions: ShutterCreationOptions = {}) {
   const snapshotsPath = shutterOptions.snapshotsPath || path.join(testsDirectoryPath, 'snapshots')
-  const updateSnapshots = process.argv.includes('--update-shutter-snapshots') || Boolean(process.env.UPDATE_SHUTTER_SNAPSHOTS)
+  const filesToSubmit = shutterOptions.files || []
 
   let finishCalled: boolean = false
   let tests: TestCase[] = []
@@ -86,7 +89,7 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
       const expectationFilePath = getSnapshotsPath(snapshotsPath, testID)
       const expectation = await loadFileIfExists(expectationFilePath)
 
-      const unprocessedSnapshot = await createSnapshot(shutterConfig.authtoken, htmlPage, [], { diffOptions, expectation, labels, renderOptions })
+      const unprocessedSnapshot = await createSnapshot(shutterConfig.authtoken, htmlPage, filesToSubmit, { diffOptions, expectation, labels, renderOptions })
       const processedSnapshotPromise = retrieveProcessedSnapshot(unprocessedSnapshot.id)
 
       tests.push({
@@ -111,14 +114,14 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
 
       const results = await Promise.all(
         tests.map(async test => {
-          await syncSnapshot(test, updateSnapshots)
+          await syncSnapshot(test, shouldUpdateSnapshots())
           return createResultData(test)
         })
       )
       const testsFailed = results.some(result => !result.match)
       const inspectionLine = results.length > 0 ? `Inspect the snapshots at <${createInspectionURL(results[0])}>` : ''
 
-      if (testsFailed && !updateSnapshots) {
+      if (testsFailed && !shouldUpdateSnapshots()) {
         throw new Error(`Shutter tests failed. Tests:\n${formatTestResultsOverview(results)}\n${inspectionLine}`)
       } else {
         const snapshotSetsCache = await snapshotSetsCachePromise
@@ -135,3 +138,7 @@ const createShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreati
 }
 
 export default createShutter
+
+export async function addFile (localPath: string, serveAsPath: string) {
+  return loadFileFromDisk(localPath, { fileName: serveAsPath })
+}
