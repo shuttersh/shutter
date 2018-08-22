@@ -64,8 +64,8 @@ export const createSnapshot = async (authToken: string, page: File, pageAssets: 
     if (!asset.fileName) throw new Error(`Additional asset lacks filename (index ${pageAssets.indexOf(asset)})`)
 
     req.attach('files[]', await asset.getContent(), {
-      contentType: page.contentType || undefined,
-      filename: page.fileName
+      contentType: asset.contentType || undefined,
+      filename: asset.fileName
     })
   }
 
