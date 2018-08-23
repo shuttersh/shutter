@@ -84,7 +84,7 @@ test('Button', async t => {
 ```
 
 
-# CLI
+## CLI
 
 First make sure the `shutter` package is installed:
 
@@ -110,3 +110,39 @@ You will see an interactive prompt that allows you to select the snapshots you w
 </p>
 
 If you need detailed usage information for the `shutter` command line tool, just run `npx shutter --help`.
+
+
+## Custom `<head>`
+
+The `<head>` section of the HTML document is easily customizable.
+
+```jsx
+import createReactShutter from '@shutter/react'
+
+const head = (
+  <>
+    <link href='https://fonts.googleapis.com/css?family=Fjalla+One|Roboto|Catamaran:200' rel='stylesheet' />
+  </>
+)
+const shutter = createReactShutter(__dirname, { head })
+```
+
+
+## Submit local files
+
+You can submit local files that will be served on a path of your choice while rendering. This way you can use custom stylesheets, for instance.
+
+```jsx
+import createReactShutter, { addFile } from '@shutter/react'
+import * as path from 'path'
+
+const files = await Promise.all([
+  addFile(path.join(__dirname, 'styles/base.css'), '/base.css')
+])
+const head = (
+  <>
+    <link href='/base.css' rel='stylesheet' />
+  </>
+)
+const shutter = createReactShutter(__dirname, { files, head })
+```

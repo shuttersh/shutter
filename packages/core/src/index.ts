@@ -29,17 +29,33 @@ export type HTMLString = string
 export type Layout = (content: HTMLString, head: HTMLString) => HTMLString
 
 export interface ShutterCreationOptions {
+  /** Local files to upload, like stylesheets. Use `addFile()` to populate this array. */
   files?: File[],
+
+  /** Custom content to go into the <head> tag of the document. */
   head?: HTMLString,
+
+  /** Layout to use for rendering. Pass a custom layout to change the overall page structure. */
   layout?: Layout,
+
+  /** Set a custom path to your local snapshot files here. */
   snapshotsPath?: string,
+
+  /** Set custom image comparison options here. Used to compare the current snapshot to the expectation. */
   diffOptions?: DiffOptions,
+
+  /** Set custom rendering options here. */
   renderOptions?: RenderOptions
 }
 
 export interface SnapshotOptions {
+  /** Layout to use for rendering. Pass a custom layout to change the overall page structure. */
   layout?: Layout,
+
+  /** Set custom image comparison options here. Used to compare the current snapshot to the expectation. */
   diffOptions?: DiffOptions,
+
+  /** Set custom rendering options here. */
   renderOptions?: RenderOptions
 }
 

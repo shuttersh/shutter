@@ -56,11 +56,25 @@ Creates a shutter instance. You need to pass your testing directory (can usually
 
 ```ts
 interface ShutterOptions {
+  /** Local files to upload, like stylesheets. Use `addFile()` to populate this array. */
+  files?: File[],
+
+  /** Custom content to go into the <head> tag of the document. */
   head?: ReactElement<any>,
-  layout?: (htmlContent: string) => string,
+
+  /** Layout to use for rendering. Pass a custom layout to change the overall page structure. */
+  layout?: (bodyContent: string, headContent: string) => string,
+
+  /** Render function to use. Takes some React element tree and renders it to static HTML. */
   render?: (reactElement: ReactElement<any>) => Promise<string>,
+
+  /** Set a custom path to your local snapshot files here. */
   snapshotsPath?: string,
+
+  /** Set custom image comparison options here. Used to compare the current snapshot to the expectation. */
   diffOptions?: DiffOptions,
+
+  /** Set custom rendering options here. */
   renderOptions?: RenderOptions
 }
 ```
@@ -91,6 +105,12 @@ Check out the [`@shutter/api` documentation](../api/README.md) for the `DiffOpti
 Waits until all rendering tasks have finished, then collects and evaluates the results.
 
 Will throw with a test results summary if snapshots don't match. Prints a success message and an inspection link if everything matched.
+
+### `shutter.addFile(localPath: string, serveAsPath: string): Promise<File>`
+
+Reads a local file and prepares it for submission along the HTML content to render. Use it to submit local stylesheets, images, etc.
+
+Pass the resulting `File` to `createShutter()` as `options.files`.
 
 ### Custom render function
 
