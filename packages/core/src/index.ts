@@ -138,12 +138,13 @@ function createShutter (testsDirectoryPath: string, shutterOptions: ShutterCreat
       const testsFailed = results.some(result => !result.match)
       const inspectionLine = results.length > 0 ? `Inspect the snapshots at <${createInspectionURL(results[0])}>` : ''
 
-      if (testsFailed && !shouldUpdateSnapshots()) {
-        throw new Error(`Shutter tests failed. Tests:\n${formatTestResultsOverview(results)}\n${inspectionLine}`)
-      } else {
-        const snapshotSetsCache = await snapshotSetsCachePromise
-        await updateSnapshotSetCache(snapshotSetsCache, results)
+      const snapshotSetsCache = await snapshotSetsCachePromise
+      await updateSnapshotSetCache(snapshotSetsCache, results)
 
+      if (testsFailed && !shouldUpdateSnapshots()) {
+        const shutterUpdateLine = 'If changes were intended, run `npx shutter update`.'
+        throw new Error(`Shutter tests failed. Tests:\n${formatTestResultsOverview(results)}\n${inspectionLine}\n${shutterUpdateLine}`)
+      } else {
         console.log(formatSuccessMessage(results))
         console.log(inspectionLine)
       }
