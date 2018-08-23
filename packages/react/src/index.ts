@@ -2,12 +2,13 @@ import { ReactElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import createShutter, {
   addFile,
+  createFileFromBuffer,
   ShutterCreationOptions as CoreShutterCreationOptions,
   SnapshotOptions as CoreSnapshotOptions,
   TestResult
 } from '@shutter/core'
 
-export { addFile, TestResult }
+export { addFile, createFileFromBuffer, TestResult }
 
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 

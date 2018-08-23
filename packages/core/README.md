@@ -86,11 +86,15 @@ Waits until all rendering tasks have finished, then collects and evaluates the r
 
 Will throw with a test results summary if snapshots don't match. Prints a success message and an inspection link if everything matched.
 
-### `shutter.addFile(localPath: string, serveAsPath: string): Promise<File>`
+### `addFile(localPath: string, serveAsPath: string): Promise<File>`
 
 Reads a local file and prepares it for submission along the HTML content to render. Use it to submit local stylesheets, images, etc.
 
 Pass the resulting `File` to `createShutter()` as `options.files`.
+
+### `createFileFromBuffer(content: Buffer, fileName: string, options: FileCreationOptions = {}): File`
+
+Allows you to submit a file from in-memory contents. Check out the [@shutter/api documentation](../api) for details.
 
 ## See also
 

@@ -24,7 +24,8 @@ import {
   TestResult
 } from './results'
 
-export { File, TestResult }
+export { createFileFromBuffer, File, TestResult }
+
 export type HTMLString = string
 export type Layout = (content: HTMLString, head: HTMLString) => HTMLString
 
