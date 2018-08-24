@@ -13,7 +13,26 @@ The tests will fail if the current snapshot does not match the expected one. If 
 import createShutter from '@shutter/core'
 
 const shutter = createShutter(__dirname)
+shutter.snapshot('New UI', '<div>Renders any HTML.</div>')
 ```
+
+To upload local files:
+
+```ts
+import createShutter, { addFile } from '@shutter/core'
+import * as path from 'path'
+
+const files = await Promise.all([
+  addFile(path.join(__dirname, 'styles.css'), '/styles.css')
+])
+const head = `
+  <link href="/styles.css" rel="stylesheet" />
+`
+
+const shutter = createShutter(__dirname, { files, head })
+shutter.snapshot('New UI', '<div class="my-content">Renders any HTML.</div>')
+```
+
 
 ### `createShutter(testDirectoryPath: string, options: ShutterOptions): Shutter`
 
@@ -21,14 +40,27 @@ Creates a shutter instance. You need to pass your testing directory (can usually
 
 ```ts
 interface ShutterOptions {
-  layout?: (htmlContent: string) => string,
+  /** Local files to upload, like stylesheets. Use `addFile()` to populate this array. */
+  files?: File[],
+
+  /** Custom content to go into the <head> tag of the document. */
+  head?: string,
+
+  /** Layout to use for rendering. Pass a custom layout to change the overall page structure. */
+  layout?: (bodyContent: string, headContent: string) => string,
+
+  /** Set a custom path to your local snapshot files here. */
   snapshotsPath?: string,
+
+  /** Set custom image comparison options here. Used to compare the current snapshot to the expectation. */
   diffOptions?: DiffOptions,
+
+  /** Set custom rendering options here. */
   renderOptions?: RenderOptions
 }
 ```
 
-Check out the [`@shutter/api` documentation](../api/README.md) for the `DiffOptions` and `RenderOptions` details.
+Check out the [`@shutter/api` documentation](../api/README.md) for the `File`, `DiffOptions` and `RenderOptions` details.
 
 ### `shutter.snapshot(testName: string, html: string, options: SnapshotOptions = {}): Promise<void>`
 
@@ -53,6 +85,18 @@ Check out the [`@shutter/api` documentation](../api/README.md) for the `DiffOpti
 Waits until all rendering tasks have finished, then collects and evaluates the results.
 
 Will throw with a test results summary if snapshots don't match. Prints a success message and an inspection link if everything matched.
+
+### `addFile(localPath: string, serveAsPath: string): Promise<File>`
+
+Reads a local file and prepares it for submission along the HTML content to render. Use it to submit local stylesheets, images, etc.
+
+Pass the resulting `File` to `createShutter()` as `options.files`.
+
+Note: The submitted file will be publicly accessible.
+
+### `createFileFromBuffer(content: Buffer, fileName: string, options: FileCreationOptions = {}): File`
+
+Allows you to submit a file from in-memory contents. Check out the [@shutter/api documentation](../api) for details.
 
 ## See also
 

@@ -1,12 +1,16 @@
 import { ReactElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import createShutter, {
+  addFile,
+  createFileFromBuffer,
   ShutterCreationOptions as CoreShutterCreationOptions,
   SnapshotOptions as CoreSnapshotOptions,
   TestResult
 } from '@shutter/core'
 
-export { TestResult }
+export { addFile, createFileFromBuffer, TestResult }
+
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 
 export type HTMLString = string
 export type BuiltinRenderFunction = (reactElement: ReactElement<any>) => Promise<HTMLString>
@@ -17,7 +21,8 @@ export type BuiltinRenderFunction = (reactElement: ReactElement<any>) => Promise
  */
 export type RenderFunction = (reactElement: ReactElement<any>, originalRender: BuiltinRenderFunction) => Promise<HTMLString>
 
-export interface ShutterCreationOptions extends CoreShutterCreationOptions {
+export type ShutterCreationOptions = Omit<CoreShutterCreationOptions, 'head'> & {
+  head?: React.ReactElement<any>,
   render?: RenderFunction
 }
 
@@ -30,7 +35,11 @@ export const renderComponent = (element: ReactElement<any>): Promise<HTMLString>
 }
 
 const createReactShutter = (testsDirectoryPath: string, shutterOptions: ShutterCreationOptions = {}) => {
-  const shutter = createShutter(testsDirectoryPath, shutterOptions)
+  const shutterCoreOptions = {
+    ...shutterOptions,
+    head: shutterOptions.head ? renderToStaticMarkup(shutterOptions.head) : ''
+  }
+  const shutter = createShutter(testsDirectoryPath, shutterCoreOptions)
 
   return {
     ...shutter,
