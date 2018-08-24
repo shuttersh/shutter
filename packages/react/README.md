@@ -112,6 +112,8 @@ Reads a local file and prepares it for submission along the HTML content to rend
 
 Pass the resulting `File` to `createShutter()` as `options.files`.
 
+Note: The submitted file will be publicly accessible.
+
 ### `createFileFromBuffer(content: Buffer, fileName: string, options: FileCreationOptions = {}): File`
 
 Allows you to submit a file from in-memory contents. Check out the [@shutter/api documentation](../api) for details.

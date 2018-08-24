@@ -146,3 +146,5 @@ const head = (
 )
 const shutter = createReactShutter(__dirname, { files, head })
 ```
+
+Please note that the submitted file will be publicly accessible.

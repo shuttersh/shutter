@@ -150,8 +150,6 @@ function createShutter (testsDirectoryPath: string, shutterOptions: ShutterCreat
       }
       return results
     }
-
-    // TODO: `addDirectory()`, `addFile()`
   }
 }
 
