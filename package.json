@@ -6,7 +6,8 @@
     "postinstall": "link-parent-bin",
     "build": "oao run-script --tree build",
     "pretest": "yarn build",
-    "test": "oao run-script --parallel test"
+    "test": "oao run-script --parallel test",
+    "publish:all": "lerna exec npm publish"
   },
   "workspaces": [
     "packages/*"
