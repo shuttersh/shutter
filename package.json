@@ -1,6 +1,6 @@
 {
   "name": "shutter.sh",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "postinstall": "link-parent-bin",
@@ -12,6 +12,7 @@
     "packages/*"
   ],
   "devDependencies": {
+    "lerna": "^3.1.4",
     "link-parent-bin": "^0.2.0",
     "oao": "^1.5.1"
   }
