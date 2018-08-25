@@ -1,6 +1,6 @@
 {
   "name": "@shutter/core",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "license": "MIT",
   "author": "Andy Wermke (https://github.com/andywer)",
   "repository": "github:shuttersh/shutter",
@@ -13,10 +13,10 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@shutter/api": "^0.3.0",
-    "@shutter/builddata": "^0.3.0",
-    "@shutter/metacache": "^0.3.0",
-    "@shutter/shutterrc": "^0.3.0",
+    "@shutter/api": "^0.4.0",
+    "@shutter/builddata": "^0.4.0",
+    "@shutter/metacache": "^0.4.0",
+    "@shutter/shutterrc": "^0.4.0",
     "dashify": "^1.0.0",
     "mkdirp": "^0.5.1",
     "mz": "^2.7.0"
