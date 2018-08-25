@@ -1,0 +1,116 @@
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+header {
+  width: 100%;
+  background: rgba(242, 242, 242, 0.9);
+  color: black;
+}
+
+header > div {
+  height: 64px;
+}
+
+header nav a {
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+  opacity: 0.85;
+  text-transform: uppercase;
+}
+header nav a:hover {
+  opacity: 1;
+}
+
+header a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+header a svg {
+  width: 1em;
+  height: 1em;
+  margin-top: -2px;
+  font-size: 120%;
+}
+
+main, main.page-max-width {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 20px;
+  padding-bottom: 56px;
+}
+
+main > aside {
+  padding-right: 40px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  border-right: 1px solid #eaecef;
+}
+
+main > article {
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding-left: 40px;
+  margin-bottom: 16px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 36px;
+  background: #181818;
+  color: white;
+  font-family: "Fjalla One", sans-serif;
+  font-size: 16px;
+}
+
+footer > * {
+  height: 100%;
+}
+
+footer a {
+  color: inherit;
+  text-decoration: inherit;
+  transition: color .2s;
+}
+footer a:hover {
+  color: #f44336;
+}
+
+footer a svg {
+  width: 1em;
+  height: 1em;
+  margin-top: -2px;
+  fill: currentColor;
+  font-size: 125%;
+}
+
+.page-max-width {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 0 3vw;
+}
+
+.logo {
+  color: inherit;
+  font-family: "Fjalla One", sans-serif;
+  font-size: 32px;
+  text-decoration: none;
+  text-transform: uppercase;
+}

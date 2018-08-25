@@ -1,0 +1,62 @@
+/* Flex Box */
+
+.d-flex {
+  display: flex;
+}
+.d-inline-flex {
+  display: inline-flex;
+}
+
+.flex-space-between {
+  justify-content: space-between;
+}
+.flex-space-evenly {
+  justify-content: space-evenly;
+}
+.flex-content-center {
+  align-content: center;
+}
+.flex-items-center {
+  align-items: center;
+}
+
+/* Margins */
+
+.ml-0 {
+  margin-left: 0;
+}
+.ml-8 {
+  margin-left: 8px;
+}
+.ml-12 {
+  margin-left: 12px;
+}
+.ml-16 {
+  margin-left: 16px;
+}
+.ml-24 {
+  margin-left: 24px;
+}
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-0 {
+  margin-right: 0;
+}
+.mr-8 {
+  margin-right: 8px;
+}
+.mr-12 {
+  margin-right: 12px;
+}
+.mr-16 {
+  margin-right: 16px;
+}
+.mr-24 {
+  margin-right: 24px;
+}
+.mr-auto {
+  margin-right: auto;
+}
+

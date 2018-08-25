@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Shutter.sh Documentation - Using the service and writing visual component regression tests">
+
+    <title>Shutter.sh Documentation</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" sizes="any" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link href="/styles/base-styles.css" rel="stylesheet" />
+    <link href="/styles/layout.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Roboto|Catamaran:200" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <!-- Header navigation -->
+    <header>
+      <div class="page-max-width d-flex flex-space-between flex-content-center">
+        <div class="d-flex flex-items-center ml-0 mr-auto">
+          <a class="logo d-inline-flex flex-items-center" href="https://shutter.sh">
+            <span class="mr-12">Shutter</span>
+            <svg version="1.1" preserveAspectRatio="xMidYMid meet" viewBox="38 38 124 124" style="height:1em;position:relative;top:-2px"><g><path fill="currentColor" d="M99.68,39.384c-33.664,0-61.052,27.388-61.052,61.053s27.388,61.053,61.052,61.053   c33.664,0,61.053-27.388,61.053-61.053S133.344,39.384,99.68,39.384z M122.149,119.323l24.959-0.019   c-1.415,3.545-3.21,6.897-5.346,10l-25.39,0.019l-16.388,0.012h-5.421l0.002,0.004l12.506,21.612   c-2.415,0.352-4.881,0.542-7.392,0.542c-1.327,0-2.638-0.067-3.94-0.167l-12.726-21.991l-8.475-14.646l-2.442-4.229l-0.003,0.005   l-12.441,21.611c-2.338-2.952-4.367-6.159-6.015-9.586l12.684-22.033l8.36-14.521l2.542-4.402h-0.007h-24.95   c1.418-3.544,3.216-6.894,5.354-9.996h25.375h21.821l-12.49-21.621c2.403-0.348,4.856-0.537,7.354-0.537   c1.34,0,2.664,0.068,3.979,0.17l12.702,21.988l7.524,13.024l3.388,5.868l0.001-0.002l12.457-21.601   c2.336,2.954,4.362,6.163,6.008,9.591l-12.693,22.01l-8.289,14.373l-2.611,4.522H122.149z"></path><polygon fill="currentColor" points="121.505,100.429 116.283,91.388 110.593,81.534 110.59,81.534 88.766,81.534 88.75,81.534    83.165,91.235 77.852,100.437 77.86,100.45 77.854,100.461 83.371,109.996 88.766,119.34 88.779,119.34 88.783,119.348    99.894,119.34 110.593,119.34 110.598,119.332 110.604,119.332 116.067,109.859 121.507,100.437 121.504,100.431"></polygon></g></svg>
+          </a>
+        </div>
+
+        <nav class="d-flex flex-items-center ml-auto mr-0">
+          <a class="mr-24" href="/">
+            Home
+          </a>
+          <a href="https://github.com/shuttersh/shutter" target="_blank" rel="nofolllow">
+            <svg class="mr-8" focusable="false" viewBox="0 0 1792 1792" aria-hidden="true"><title>GitHub</title><path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z"></path></svg>
+            GitHub
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main page content -->
+    <main>
+      {{ content | safe }}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="page-max-width d-flex flex-space-evenly flex-items-center">
+        <div></div>
+        <a class="d-inline-flex flex-items-center" href="https://shutter.sh/imprint">Imprint</a>
+        <div class="d-flex flex-items-center">
+          <a class="d-inline-flex flex-items-center" href="https://github.com/shuttersh/shutter" target="_blank" rel="nofollow">
+            <svg class="mr-16" focusable="false" viewBox="0 0 1792 1792"><title>GitHub</title><path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z"></path></svg>
+          </a>
+          <a class="d-inline-flex flex-items-center" href="https://twitter.com/shuttersh" target="_blank" rel="nofollow">
+            <svg focusable="false" viewBox="0 0 1792 1792"><title>Twitter</title><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"></path></svg>
+          </a>
+        </div>
+        <a class="d-inline-flex flex-items-center" href="https://github.com/shuttersh/shutter/issues" target="_blank" rel="nofollow">
+          <svg class="mr-8" viewBox="0 0 14 16" version="1.1" width="112" aria-hidden="true"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+          Issues
+        </a>
+        <div></div>
+      </div>
+    </footer>
+
+  </body>
+</html>
