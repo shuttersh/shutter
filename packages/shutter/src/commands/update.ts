@@ -1,5 +1,5 @@
 import { retrieveFile, retrieveProcessedSnapshot } from '@shutter/api'
-import { openSnapshotSetsCache, LatestSnapshotSetEntry, SnapshotSetCacheEntry } from '@shutter/metacache'
+import { openSnapshotSetsCache, LatestSnapshotSetEntry, SnapshotSetCacheEntry } from '@shutter/core/metacache'
 import * as inquirer from 'inquirer'
 import * as fs from 'mz/fs'
 import { CommandFunction } from '../command'

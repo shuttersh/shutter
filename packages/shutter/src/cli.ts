@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import meow from 'meow'
-import { loadShutterConfig } from '@shutter/shutterrc'
+import { loadShutterConfig } from '@shutter/core/shutterrc'
 import * as commands from './commands'
 import { showCommandHelp, Command } from './command'
 

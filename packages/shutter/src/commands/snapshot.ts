@@ -1,5 +1,5 @@
 import { createSnapshot, retrieveProcessedSnapshot, loadFileFromDisk } from '@shutter/api'
-import { loadShutterConfig } from '@shutter/shutterrc'
+import { loadShutterConfig } from '@shutter/core/shutterrc'
 import { CommandFunction } from '../command'
 
 export const minimumArgs = 1
