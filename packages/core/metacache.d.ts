@@ -1,1 +1,1 @@
-export * from './dist/metacache'
+export * from './dist/metacache/index'

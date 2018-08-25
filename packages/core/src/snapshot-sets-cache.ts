@@ -1,4 +1,4 @@
-import { openSnapshotSetsCache, SnapshotSetsCache } from '@shutter/metacache'
+import { openSnapshotSetsCache, SnapshotSetsCache } from './metacache'
 import { TestResult } from './results'
 
 export { openSnapshotSetsCache }
