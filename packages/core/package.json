@@ -8,7 +8,7 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "ava-ts",
+    "test": "ava-ts 'test/**/*.test.ts' && ava-ts --serial 'test.fragile/**/*.test.ts'",
     "posttest": "tslint --project . 'src/**/*.ts' 'test/**/*.ts' -e '**/*.d.ts'",
     "prepublishOnly": "yarn build"
   },
