@@ -4,7 +4,7 @@ import * as path from 'path'
 import * as os from 'os'
 import { SnapshotSetCacheEntry } from '@shutter/metacache'
 import createShutter from '../src'
-import { isDirectory, isFile } from './helpers/fs'
+import { isDirectory, isFile } from '../test/helpers/fs'
 
 require('dotenv').load()
 
