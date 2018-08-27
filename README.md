@@ -11,7 +11,7 @@ This monorepo contains the client packages you need to work with the [shutter.sh
 
 Find the documentation at <https://docs.shutter.sh>. It contains user-centric documentation and the *Getting Started* guide.
 
-Check out the package README files for more detailed technical documentation.
+The sources of the documentation website can be found in [./docs](./docs). Open an issue or a pull request to propose changes to the documentation.
 
 
 ## End user packages
