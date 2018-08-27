@@ -12,7 +12,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
     <link href="/styles/base-styles.css" rel="stylesheet" />
+    <link href="/styles/content.css" rel="stylesheet" />
     <link href="/styles/layout.css" rel="stylesheet" />
+    <link href="/styles/side-menu.css" rel="stylesheet" />
+    <link href="/styles/util.css" rel="stylesheet" />
+    <link href="/styles/prism-base16-ateliersulphurpool.light.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Roboto|Catamaran:200" rel="stylesheet" />
   </head>
 
@@ -41,13 +45,13 @@
     </header>
 
     <!-- Main page content -->
-    <main>
+    <main class="page-max-width">
       {{ content | safe }}
     </main>
 
     <!-- Footer -->
     <footer>
-      <div class="page-max-width d-flex flex-space-evenly flex-items-center">
+      <nav class="page-max-width d-flex flex-space-evenly flex-items-center">
         <div></div>
         <a class="d-inline-flex flex-items-center" href="https://shutter.sh/imprint">Imprint</a>
         <div class="d-flex flex-items-center">
@@ -63,7 +67,7 @@
           Issues
         </a>
         <div></div>
-      </div>
+      </nav>
     </footer>
 
   </body>

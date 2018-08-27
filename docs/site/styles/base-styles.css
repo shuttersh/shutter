@@ -1,62 +1,29 @@
-/* Flex Box */
-
-.d-flex {
-  display: flex;
-}
-.d-inline-flex {
-  display: inline-flex;
+h1, h2 {
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #eaecef;
 }
 
-.flex-space-between {
-  justify-content: space-between;
-}
-.flex-space-evenly {
-  justify-content: space-evenly;
-}
-.flex-content-center {
-  align-content: center;
-}
-.flex-items-center {
-  align-items: center;
+h1 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-family: 'Fjalla One', Helvetica, sans-serif;
+  font-size: 1.8rem;
+  line-height: 100%;
+  text-transform: uppercase;
 }
 
-/* Margins */
-
-.ml-0 {
-  margin-left: 0;
-}
-.ml-8 {
-  margin-left: 8px;
-}
-.ml-12 {
-  margin-left: 12px;
-}
-.ml-16 {
-  margin-left: 16px;
-}
-.ml-24 {
-  margin-left: 24px;
-}
-.ml-auto {
-  margin-left: auto;
+h2 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-family: 'Fjalla One', Helvetica, sans-serif;
+  font-size: 1.7rem;
+  line-height: 100%;
+  text-transform: uppercase;
 }
 
-.mr-0 {
-  margin-right: 0;
+h6 {
+  margin-top: 8px;
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+  line-height: 100%;
 }
-.mr-8 {
-  margin-right: 8px;
-}
-.mr-12 {
-  margin-right: 12px;
-}
-.mr-16 {
-  margin-right: 16px;
-}
-.mr-24 {
-  margin-right: 24px;
-}
-.mr-auto {
-  margin-right: auto;
-}
-

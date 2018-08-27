@@ -1,0 +1,13 @@
+<aside class="side-menu">
+  <nav class="menu-root">
+    {% for home in collections.home %}
+      {{ menuItem(home) }}
+    {% endfor %}
+    <h7 class="menu-item">Guides</h7>
+    <nav class="guides">
+      {% for guide in collections.guide %}
+        {{ menuItem(guide) }}
+      {% endfor %}
+    </nav>
+  </nav>
+</aside>

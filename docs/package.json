@@ -8,5 +8,8 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.5.2"
+  },
+  "dependencies": {
+    "@11ty/eleventy-plugin-syntaxhighlight": "^1.0.5"
   }
 }

@@ -2,9 +2,13 @@
 layout: layout/default
 ---
 
-<aside class="sidemenu">
-  <h3>{{ title }}</h3>
-</aside>
+{% macro menuItem(targetPage) %}
+  <a class="menu-item {{ 'current-page' if page.url == targetPage.url else '' }}" href="{{ targetPage.url }}">
+    {{ targetPage.data.title }}
+  </a>
+{% endmacro %}
+
+{% include "side-menu.njk" %}
 <article>
   {{ content | safe }}
 </article>
