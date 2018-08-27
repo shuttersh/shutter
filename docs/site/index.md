@@ -1,5 +1,5 @@
 ---
-layout: layout/page
+layout: layout/default
 title: Home
 tags: home
 ---

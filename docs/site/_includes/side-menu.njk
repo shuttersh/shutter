@@ -1,3 +1,9 @@
+{% macro menuItem(targetPage) %}
+  <a class="menu-item {{ 'current-page' if page.url == targetPage.url else '' }}" href="{{ targetPage.url }}">
+    {{ targetPage.data.title }}
+  </a>
+{% endmacro %}
+
 <aside class="side-menu">
   <nav class="menu-root">
     {% for home in collections.home %}
