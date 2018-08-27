@@ -5,6 +5,8 @@ description: How to test React.js components.
 
 # React Component Tests
 
+[[toc]]
+
 ## Setup
 
 First, install the necessary packages:
@@ -117,7 +119,7 @@ You will see an interactive prompt that allows you to select the snapshots you w
 If you need detailed usage information for the `shutter` command line tool, just run `npx shutter --help`.
 
 
-## Custom `<head>`
+## Custom <code>&lt;head&gt;</code>
 
 The `<head>` section of the HTML document is easily customizable.
 

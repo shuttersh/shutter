@@ -12,6 +12,15 @@
   margin: 0;
 }
 
+.table-of-contents {
+  margin-bottom: 32px;
+}
+
+.table-of-contents ul {
+  padding-left: 36px;
+  list-style-type: circle;
+}
+
 article {
   font-size: 16px;
   line-height: 150%;
@@ -60,4 +69,17 @@ article h4, article h5, article h6, article h7 {
 
 article h1 code, article h2 code, article h3 code, article h4 code, article h5 code, article h6 code, article h7 code {
   font-family: inherit;
+}
+
+article .header-anchor {
+  position: absolute;
+  display: inline-block;
+  width: 0.8em;
+  margin-left: -0.8em;
+  opacity: 0;
+  transition: opacity .1s;
+}
+
+article h1:hover .header-anchor, article h2:hover .header-anchor {
+  opacity: 1;
 }

@@ -13,6 +13,8 @@ The tests will fail if the current snapshot does not match the expected one. If 
 
 Find it on [GitHub](https://github.com/shuttersh/shutter/tree/master/packages/core).
 
+[[toc]]
+
 ## API
 
 ```typescript

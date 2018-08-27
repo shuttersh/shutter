@@ -11,6 +11,8 @@ Renders React components to PNG snapshots using the shutter.sh service and saves
 
 The tests will fail if the current snapshot does not match the expected one. If that visual change was intended, you can update your local snapshot.
 
+[[toc]]
+
 
 ## Installation
 

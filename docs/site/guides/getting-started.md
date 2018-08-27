@@ -5,6 +5,8 @@ description: Quick start guide showing how to get up and running.
 
 # Getting Started
 
+[[toc]]
+
 ## Sign up
 
 The shutter.sh service is currently in closed alpha testing. You will need an invitation to use it until the service goes public.
@@ -47,7 +49,7 @@ Your authentication token has now been saved to a `.shutterrc` file and we are r
 </div>
 
 
-## First Test
+## Testing
 
 Let's write a first visual snapshot test! We will just render some static HTML / CSS content for now.
 
