@@ -5,7 +5,7 @@ h1, h2 {
 
 h1 {
   margin-top: 24px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   font-family: 'Fjalla One', Helvetica, sans-serif;
   font-size: 1.8rem;
   line-height: 100%;
@@ -14,11 +14,19 @@ h1 {
 
 h2 {
   margin-top: 24px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   font-family: 'Fjalla One', Helvetica, sans-serif;
   font-size: 1.7rem;
   line-height: 100%;
   text-transform: uppercase;
+}
+
+h3 {
+  margin-top: 24px;
+  margin-bottom: 20px;
+  font-family: 'Fjalla One', Helvetica, sans-serif;
+  font-size: 1.5rem;
+  line-height: 125%;
 }
 
 h6 {

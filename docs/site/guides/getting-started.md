@@ -9,7 +9,7 @@ description: Quick start guide showing how to get up and running.
 
 The shutter.sh service is currently in closed alpha testing. You will need an invitation to use it until the service goes public.
 
-If you would like to get one, contact us anytime on [Twitter](https://twitter.com/shuttersh) or check out our [website](https://shutter.sh/) for other ways to contact.
+If you would like to get invited, just ping us on [Twitter](https://twitter.com/shuttersh) or check out our [website](https://shutter.sh/) for other ways to get in touch.
 
 
 ## Installation

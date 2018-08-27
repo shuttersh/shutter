@@ -1,5 +1,5 @@
 ---
-title: React components
+title: React Components
 description: How to test React.js components.
 ---
 

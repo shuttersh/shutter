@@ -19,4 +19,13 @@ tags: home
 
 # Package API
 
-
+<ul class="teaser-links">
+  {%- for package in collections.package -%}
+    <li>
+      <h6>
+        <a href="{{ package.url }}">{{ package.data.title }}</a>
+      </h6>
+      <p>{{ package.data.description }}</p>
+    </li>
+  {%- endfor -%}
+</ul>

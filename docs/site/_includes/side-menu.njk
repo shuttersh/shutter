@@ -15,5 +15,11 @@
         {{ menuItem(guide) }}
       {% endfor %}
     </nav>
+    <h7 class="menu-item">Packages</h7>
+    <nav class="packages">
+      {% for package in collections.package %}
+        {{ menuItem(package) }}
+      {% endfor %}
+    </nav>
   </nav>
 </aside>

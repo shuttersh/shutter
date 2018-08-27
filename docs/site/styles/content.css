@@ -14,6 +14,7 @@
 
 article {
   font-size: 16px;
+  line-height: 150%;
 }
 
 article.page-content {
@@ -30,7 +31,11 @@ article a:hover {
 }
 
 article code {
+  padding: 0.2em 0.4em;
   background: #f6f8fa;
+}
+article code[class*="language-"] {
+  padding: 0;
 }
 
 article pre, article pre[class*="language-"] {
@@ -42,11 +47,14 @@ article pre, article pre[class*="language-"] {
   font-size: 85%;
 }
 
-article {
-  line-height: 150%;
+article pre .highlight-line {
+  height: 1.3em;
 }
 
-article h1, article h2, article h3, article h4, article h5, article h6, article h7 {
+article h1, article h2, article h3 {
+  line-height: 150%;
+}
+article h4, article h5, article h6, article h7 {
   line-height: 125%;
 }
 

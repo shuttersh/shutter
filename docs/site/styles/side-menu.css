@@ -1,5 +1,5 @@
 .side-menu {
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
 .side-menu nav {
@@ -16,7 +16,7 @@
 
 .side-menu .menu-item {
   display: list-item;
-  margin: 0.5em 0;
+  margin: 0 0 0.8em;
 }
 
 .side-menu .menu-item.current-page {
