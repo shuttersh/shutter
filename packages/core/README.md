@@ -100,4 +100,4 @@ Allows you to submit a file from in-memory contents. Check out the [@shutter/api
 
 ## See also
 
-Check out the documentation page at <https://shuttersh.github.io/shutter/>.
+Check out the documentation at <https://docs.shutter.sh>.

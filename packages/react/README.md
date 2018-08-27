@@ -148,4 +148,4 @@ const shutter = createReactShutter(__dirname, { render })
 
 ## See also
 
-Check out the documentation page at <https://shuttersh.github.io/shutter/>.
+Check out the documentation at <https://docs.shutter.sh>.
