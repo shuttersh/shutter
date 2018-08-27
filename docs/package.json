@@ -1,0 +1,17 @@
+{
+  "name": "docs.shutter.sh",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.5.2"
+  },
+  "dependencies": {
+    "@11ty/eleventy-plugin-syntaxhighlight": "^1.0.5",
+    "markdown-it-anchor": "^5.0.2",
+    "markdown-it-table-of-contents": "^0.4.3"
+  }
+}

@@ -3,6 +3,8 @@
   "version": "0.3.0",
   "private": true,
   "scripts": {
+    "build:docs": "cd docs/ && yarn build",
+    "dev:docs": "cd docs/ && yarn dev",
     "postinstall": "link-parent-bin",
     "build": "oao run-script --tree build",
     "pretest": "yarn build",

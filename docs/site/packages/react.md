@@ -1,4 +1,9 @@
-# @shutter/react [![NPM Version](https://img.shields.io/npm/v/@shutter/react.svg)](https://www.npmjs.com/package/@shutter/react)
+---
+title: "@shutter/react"
+description: Shutter package for rendering React components.
+---
+
+# @shutter/react
 
 React.js visual snapshot testing library using [shutter.sh](https://shutter.sh).
 
@@ -6,10 +11,12 @@ Renders React components to PNG snapshots using the shutter.sh service and saves
 
 The tests will fail if the current snapshot does not match the expected one. If that visual change was intended, you can update your local snapshot.
 
+[[toc]]
+
 
 ## Installation
 
-```sh
+```bash
 npm install --save-dev @shutter/core
 # or using yarn:
 yarn add --dev @shutter/core
@@ -44,17 +51,17 @@ It will also print an inspection URL which links to the shutter.sh app where you
 
 ## API
 
-```ts
+```typescript
 import createReactShutter from '@shutter/react'
 
 const shutter = createReactShutter(__dirname)
 ```
 
-### `createReactShutter(testDirectoryPath: string, options: ShutterOptions): Shutter`
+### createReactShutter(testDirectoryPath: string, options: ShutterOptions): Shutter
 
 Creates a shutter instance. You need to pass your testing directory (can usually just use `__dirname`), so it knows where to save the snapshots.
 
-```ts
+```typescript
 interface ShutterOptions {
   /** Local files to upload, like stylesheets. Use `addFile()` to populate this array. */
   files?: File[],
@@ -81,13 +88,13 @@ interface ShutterOptions {
 
 Check out the [`@shutter/api` documentation](../api/README.md) for the `DiffOptions` and `RenderOptions` details.
 
-### `shutter.snapshot(testName: string, element: ReactElement<any>, options: SnapshotOptions = {}): Promise<void>`
+### shutter.snapshot(testName: string, element: ReactElement<any>, options: SnapshotOptions = {}): Promise<void>
 
 Send page contents to the shutter.sh service to be rendered.
 
 The returned promise will resolve once the upload is done, but before the rendering has finished. That is why you need to call `shutter.finish()` after calling `shutter.snapshot()` the last time.
 
-```ts
+```typescript
 interface SnapshotOptions {
   layout?: (htmlContent: string) => string,
   render?: (reactElement: ReactElement<any>) => Promise<string>,
@@ -100,29 +107,37 @@ The options are mostly the same as the `ShutterOptions`. They can be used to ove
 
 Check out the [`@shutter/api` documentation](../api/README.md) for the `DiffOptions` and `RenderOptions` details.
 
-### `shutter.finish(): Promise<TestResult[]>`
+### shutter.finish(): Promise<TestResult[]>
 
 Waits until all rendering tasks have finished, then collects and evaluates the results.
 
 Will throw with a test results summary if snapshots don't match. Prints a success message and an inspection link if everything matched.
 
-### `addFile(localPath: string, serveAsPath: string): Promise<File>`
+### addFile(localPath: string, serveAsPath: string): Promise<File>
 
 Reads a local file and prepares it for submission along the HTML content to render. Use it to submit local stylesheets, images, etc.
 
 Pass the resulting `File` to `createShutter()` as `options.files`.
 
-Note: The submitted file will be publicly accessible.
+**Note: The submitted file will be publicly accessible.**
 
-### `createFileFromBuffer(content: Buffer, fileName: string, options: FileCreationOptions = {}): File`
+### createFileFromBuffer(content: Buffer, fileName: string, options: FileCreationOptions = {}): File
 
-Allows you to submit a file from in-memory contents. Check out the [@shutter/api documentation](../api) for details.
+Allows you to submit a file from in-memory contents.
+
+```typescript
+interface FileCreationOptions {
+  contentType?: string
+}
+```
+
+**Note: The submitted file will be publicly accessible.**
 
 ### Custom render function
 
 You can pass a custom render function to `createReactShutter()` or `shutter.snapshot()`. The render function takes a React element and returns a promise resolving to a string of static HTML. The default render function, exported as `renderComponent`, is just a thin wrapper around `ReactDOMServer.renderToStaticMarkup()`.
 
-```ts
+```typescript
 export type HTMLString = string
 export type BuiltinRenderFunction = (reactElement: ReactElement<any>) => Promise<HTMLString>
 export type RenderFunction = (reactElement: ReactElement<any>) => Promise<HTMLString>
@@ -145,7 +160,3 @@ const render = (element) => {
 
 const shutter = createReactShutter(__dirname, { render })
 ```
-
-## See also
-
-Check out the documentation at <https://docs.shutter.sh>.

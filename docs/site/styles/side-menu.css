@@ -1,0 +1,37 @@
+.side-menu {
+  margin-top: 24px;
+}
+
+.side-menu nav {
+  padding: 0;
+  padding-left: 0.7em;
+  color: #5469b6;
+  font-size: 1rem;
+  list-style-type: none;
+}
+
+.side-menu nav.menu-root {
+  padding-left: 0;
+}
+
+.side-menu .menu-item {
+  display: list-item;
+  margin: 0 0 0.8em;
+}
+
+.side-menu .menu-item.current-page {
+  font-weight: bold;
+}
+
+.side-menu h7.menu-item {
+  cursor: default;
+}
+
+.side-menu a {
+  color: inherit;
+  text-decoration: inherit;
+  transition: color .2s;
+}
+.side-menu a:hover {
+  color: #f44336;
+}

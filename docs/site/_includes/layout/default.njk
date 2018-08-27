@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Shutter.sh Documentation - Using the service and writing visual component regression tests">
+
+    <title>Shutter.sh Documentation</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" sizes="any" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link href="/styles/base-styles.css" rel="stylesheet" />
+    <link href="/styles/content.css" rel="stylesheet" />
+    <link href="/styles/layout.css" rel="stylesheet" />
+    <link href="/styles/side-menu.css" rel="stylesheet" />
+    <link href="/styles/util.css" rel="stylesheet" />
+    <link href="/styles/prism-base16-ateliersulphurpool.light.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Roboto" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <!-- Header navigation -->
+    {% include "header.njk" %}
+
+    <!-- Main page content -->
+    <main class="page-max-width">
+      {% include "side-menu.njk" %}
+      <article>
+        {{ content | safe }}
+      </article>
+    </main>
+
+    <!-- Footer -->
+    {% include "footer.njk" %}
+
+  </body>
+</html>

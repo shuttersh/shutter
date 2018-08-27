@@ -1,12 +1,20 @@
-# shutter [![NPM Version](https://img.shields.io/npm/v/shutter.svg)](https://www.npmjs.com/package/shutter)
+---
+title: shutter
+description: Shutter CLI package. Provides authentication and snapshot updating.
+---
 
-CLI tool to use the [shutter.sh](https://shutter.sh/) service.
+# Shutter CLI
 
-It can upload static web pages to the service for processing and download files from it.
+Command line tool that comes with the [shutter.sh](https://shutter.sh/) service.
+
+It provides authentication and snapshot updating. Can also upload static web pages to the service for processing and download files from it.
+
+[[toc]]
+
 
 ## Installation
 
-```sh
+```bash
 $ npm install shutter
 # or using yarn:
 $ yarn add shutter
@@ -18,7 +26,7 @@ $ yarn add shutter
 
 You need an authentication token in order to use shutter.sh. The `shutter` CLI tool allows you to easily log in using your token.
 
-```sh
+```bash
 $ npx shutter authenticate YOURAUTHTOKEN
 ```
 
@@ -26,7 +34,7 @@ $ npx shutter authenticate YOURAUTHTOKEN
 
 From time to time you will work on your user interface and the snapshots won't match anymore, due to intended changes. In that case you can use `shutter update` to interactively update your snapshots.
 
-```sh
+```bash
 $ shutter update
 ```
 
@@ -36,10 +44,6 @@ It shows an interactive list containing all tests that failed on last test run. 
 
 To print usage instructions:
 
-```sh
+```bash
 $ npx shutter --help
 ```
-
-## See also
-
-Check out the documentation at <https://docs.shutter.sh>.

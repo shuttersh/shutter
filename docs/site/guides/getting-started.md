@@ -1,39 +1,43 @@
 ---
 title: Getting Started
+description: Quick start guide showing how to get up and running.
 ---
 
+# Getting Started
 
-# Sign up
+[[toc]]
+
+## Sign up
 
 The shutter.sh service is currently in closed alpha testing. You will need an invitation to use it until the service goes public.
 
-If you would like to get one, feel free to contact us on [Twitter](https://twitter.com/shuttersh).
+If you would like to get invited, just ping us on [Twitter](https://twitter.com/shuttersh) or check out our [website](https://shutter.sh/) for other ways to get in touch.
 
 
-# Installation
+## Installation
 
-Open a terminal and go to your working project's directory to install the packages. We will assume that you are going to write visual regression tests for your React.js components.
+Open a terminal and go to your working project's directory to install the packages.
 
-```sh
+```bash
 $ yarn add --dev shutter @shutter/react
 ```
 
-The `shutter` package is the CLI tool which we will use for convenience. The `@shutter/react` package contains the React component snapshotting functionality.
+The `shutter` package is the CLI tool that does authentication and snapshot updates. The `@shutter/react` package contains the React component snapshotting functionality.
 
 Make sure that you installed `react` and `react-dom`:
 
-```sh
+```bash
 $ yarn add react react-dom
 ```
 
 Use your favorite test runner to write the tests, like Jest, AVA, Mocha, Tape ... The test examples that follow in this guide will be written using the Mocha / Jest API, since it is the most widely known one.
 
 
-# Authentication
+## Authentication
 
 Log in to your account using the authentication token you received with your [invitation](#sign-up):
 
-```sh
+```bash
 # `npx` comes with npm and will run shutter from ./node_modules/.bin/shutter
 $ npx shutter authenticate YOURTOKENHERE
 ```
@@ -45,13 +49,13 @@ Your authentication token has now been saved to a `.shutterrc` file and we are r
 </div>
 
 
-# First Test
+## Testing
 
 Let's write a first visual snapshot test! We will just render some static HTML / CSS content for now.
 
 Start by creating a test project and installing the basic dependencies:
 
-```sh
+```bash
 $ mkdir shutter-test
 $ cd shutter-test
 
@@ -100,7 +104,7 @@ main().catch(error => {
 
 We can now run our little script to render the button.
 
-```sh
+```bash
 $ node button.js
 ```
 
@@ -114,12 +118,3 @@ Inspect the snapshots at <https://shutter.sh/snapshot-set/KyCa50DaCBqI>
 Follow the link in the console output to inspect the rendered button in your browser. Also note that a file `snapshots/button.png` has just been created. It is a local copy of the rendered button snapshot that will be used for future regression testing.
 
 Congratulations, you are now up and running!
-
-
-# Next Steps
-
-Read the [React Testing Guide](./react-tests) to learn how to:
-
-* Write React component tests
-* Using your favorite test runner (Jest, AVA, Mocha, ...)
-* Use the shutter CLI tool
