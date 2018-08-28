@@ -1,6 +1,6 @@
 {
   "name": "shutter",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "license": "MIT",
   "author": "Andy Wermke (https://github.com/andywer)",
   "description": "Shutter.sh command line client",
