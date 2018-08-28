@@ -26,7 +26,7 @@
     "@shutter/shutterrc": "^0.4.0",
     "@types/meow": "^4.0.1",
     "@types/superagent": "^3.5.8",
-    "inquirer": "^5.2.0",
+    "inquirer": "^3.3.0",
     "meow": "^5.0.0",
     "superagent": "^3.8.3"
   }
