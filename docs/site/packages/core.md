@@ -1,6 +1,7 @@
 ---
 title: "@shutter/core"
 description: Shutter core package for rendering arbitrary web content. Framework agnostic.
+date: 2018-08-01
 ---
 
 # @shutter/core

@@ -1,6 +1,7 @@
 ---
 title: React Components
 description: How to test React.js components.
+date: 2018-08-02
 ---
 
 # React Component Tests

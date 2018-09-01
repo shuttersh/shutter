@@ -1,6 +1,7 @@
 ---
 title: "@shutter/react"
 description: Shutter package for rendering React components.
+date: 2018-08-02
 ---
 
 # @shutter/react

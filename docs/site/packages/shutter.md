@@ -1,6 +1,7 @@
 ---
 title: shutter
 description: Shutter CLI package. Provides authentication and snapshot updating.
+date: 2018-08-03
 ---
 
 # Shutter CLI

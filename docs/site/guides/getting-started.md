@@ -1,6 +1,7 @@
 ---
 title: Getting Started
 description: Quick start guide showing how to get up and running.
+date: 2018-08-01
 ---
 
 # Getting Started
