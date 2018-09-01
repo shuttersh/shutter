@@ -13,7 +13,13 @@ The tests will fail if the current snapshot does not match the expected one. If 
 import createShutter from '@shutter/core'
 
 const shutter = createShutter(__dirname)
-shutter.snapshot('New UI', '<div>Renders any HTML.</div>')
+
+async function run () {
+  await shutter.snapshot('New UI', '<div>Renders any HTML.</div>')
+  await shutter.finish()
+}
+
+run()
 ```
 
 To upload local files:
@@ -28,9 +34,14 @@ const files = await Promise.all([
 const head = `
   <link href="/styles.css" rel="stylesheet" />
 `
-
 const shutter = createShutter(__dirname, { files, head })
-shutter.snapshot('New UI', '<div class="my-content">Renders any HTML.</div>')
+
+async function run () {
+  await shutter.snapshot('New UI', '<div class="my-content">Renders any HTML.</div>')
+  await shutter.finish()
+}
+
+run()
 ```
 
 

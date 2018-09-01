@@ -23,7 +23,13 @@ Find it on [GitHub](https://github.com/shuttersh/shutter/tree/master/packages/co
 import createShutter from '@shutter/core'
 
 const shutter = createShutter(__dirname)
-shutter.snapshot('New UI', '<div>Renders any HTML.</div>')
+
+async function run () {
+  await shutter.snapshot('New UI', '<div>Renders any HTML.</div>')
+  await shutter.finish()
+}
+
+run()
 ```
 
 ```typescript
@@ -38,9 +44,14 @@ const files = await Promise.all([
 const head = `
   <link href="/styles.css" rel="stylesheet" />
 `
-
 const shutter = createShutter(__dirname, { files, head })
-shutter.snapshot('New UI', '<div class="my-content">Renders any HTML.</div>')
+
+async function run () {
+  await shutter.snapshot('New UI', '<div class="my-content">Renders any HTML.</div>')
+  await shutter.finish()
+}
+
+run()
 ```
 
 
