@@ -1,6 +1,7 @@
 ---
 title: "@shutter/react"
 description: Shutter package for rendering React components.
+date: 2018-08-02
 ---
 
 # @shutter/react
@@ -55,6 +56,13 @@ It will also print an inspection URL which links to the shutter.sh app where you
 import createReactShutter from '@shutter/react'
 
 const shutter = createReactShutter(__dirname)
+
+async function run () {
+  await shutter.snapshot('List', <ul><li>List item</li></ul>)
+  await shutter.finish()
+}
+
+run()
 ```
 
 ### createReactShutter(testDirectoryPath: string, options: ShutterOptions): Shutter
