@@ -95,6 +95,39 @@ You will see an interactive prompt that allows you to select the snapshots you w
 
 If you need detailed usage information for the `shutter` command line tool, just run `npx shutter --help`.
 
+## Custom <code>&lt;head&gt;</code>
+
+The `<head>` section of the HTML document is easily customizable.
+
+```js
+import createVueShutter from '@shutter/vue'
+
+const head = `
+  <link href="/styles.css" rel="stylesheet" />
+`
+
+const shutter = createVueShutter(__dirname, { head })
+```
+
+## Submit local files
+
+You can submit local files that will be served on a path of your choice while rendering. This way you can use custom stylesheets, for instance.
+
+```js
+import createVueShutter, { addFile } from '@shutter/vue'
+import * as path from 'path'
+
+const files = await Promise.all([
+  addFile(path.join(__dirname, 'styles.css'), '/styles.css')
+])
+const head = `
+  <link href="/styles.css" rel="stylesheet" />
+`
+const shutter = createVueShutter(__dirname, { files, head })
+```
+
+Please note that the submitted file will be publicly accessible.
+
 ## Using AVA
 
 The test runner [AVA](https://github.com/avajs/ava) is quite popular for its lean and clean test API. You can easily write tests using shutter as well:
