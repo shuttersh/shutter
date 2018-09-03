@@ -1,4 +1,4 @@
-import { renderToString } from '@vue/server-test-utils'
+import { config as vueTestUtilsConfig, renderToString } from '@vue/server-test-utils'
 import createShutter, {
   addFile,
   createFileFromBuffer,
@@ -6,6 +6,8 @@ import createShutter, {
   SnapshotOptions,
   TestResult
 } from '@shutter/core'
+
+vueTestUtilsConfig.logModifiedComponents = false
 
 export { addFile, createFileFromBuffer, TestResult }
 
