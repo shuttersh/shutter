@@ -58,6 +58,7 @@ export const command: CommandFunction = async (args: string[], flags: Flags) => 
     path => loadFileFromDisk(path)
   ))
 
+  if (!config.authtoken) throw new Error('Not authenticated.')
   const snapshot = await createSnapshot(config.authtoken, htmlFile, assetFiles)
 
   if (flags.awaitCompletion) {

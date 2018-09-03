@@ -4,7 +4,7 @@ import * as path from 'path'
 import * as os from 'os'
 
 export interface ShutterConfig {
-  authtoken: string,
+  authtoken?: string,
   [key: string]: string | undefined
 }
 
@@ -55,9 +55,6 @@ const locateNearestConfigFile = async (directoryPath: string) => {
 export const loadShutterConfig = async (directoryPath: string = process.cwd()): Promise<ShutterConfig> => {
   const configFilePath = await locateNearestConfigFile(directoryPath)
   const config = ini.parse(await fs.readFile(configFilePath, 'utf8'))
-
-  if (!config.authtoken) throw new Error(`Missing mandatory property: 'authtoken' in ${configFilePath}`)
-
   return config
 }
 
