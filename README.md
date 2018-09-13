@@ -20,6 +20,10 @@ The sources of the documentation website can be found in [./docs](./docs). Open 
 
 The React component snapshotting package. Use it to write visual regression tests for your React UI.
 
+### [@shutter/vue](./packages/vue/README.md)
+
+The Vue component snapshotting package. Use it to write visual regression tests for your Vue.js UI.
+
 ### [@shutter/core](./packages/core/README.md)
 
 The bare framework-agnostic HTML snapshotting package. It is the base of `@shutter/react` and potential future framework-specific packages.
