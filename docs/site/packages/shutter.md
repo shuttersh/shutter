@@ -25,10 +25,10 @@ $ yarn add shutter
 
 ### Login
 
-You need an authentication token in order to use shutter.sh. The `shutter` CLI tool allows you to easily log in using your token.
+The `shutter` CLI tool allows you to easily log in using your GitHub account.
 
 ```bash
-$ npx shutter authenticate YOURAUTHTOKEN
+$ npx shutter login
 ```
 
 ### Update snapshots

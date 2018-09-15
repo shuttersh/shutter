@@ -94,6 +94,10 @@ function createShutter (testsDirectoryPath: string, shutterOptions: ShutterCreat
       const testRunLabels = await metadataCollectionPromise
       const shutterConfig = await shutterConfigPromise
 
+      if (!shutterConfig.authtoken) {
+        throw new Error('No auth token found in .shutterrc file. Run `npx shutter login` or copy an auth token to the .shutterrc file.')
+      }
+
       const labels = { ...testRunLabels, 'test:name': testName }
       const layout = shutterOptions.layout || options.layout || defaultLayout
       const diffOptions = { ...shutterOptions.diffOptions, ...options.diffOptions }
