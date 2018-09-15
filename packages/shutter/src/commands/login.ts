@@ -85,7 +85,7 @@ async function login (configFilePath: string) {
         .catch(error => reject(error))
     })
 
-    open(`${getLoginURL()}?streamID=${streamID}`)
+    open(`${getLoginURL()}?streamID=${streamID}`).catch(reject)
   })
 }
 
