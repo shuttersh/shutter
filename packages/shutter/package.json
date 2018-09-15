@@ -32,7 +32,6 @@
     "@shutter/metacache": "^0.4.0",
     "@shutter/shutterrc": "^0.4.0",
     "@types/meow": "^4.0.1",
-    "@types/superagent": "^3.5.8",
     "eventsource": "^1.0.7",
     "inquirer": "^3.3.0",
     "log-symbols": "^2.2.0",
