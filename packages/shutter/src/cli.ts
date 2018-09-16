@@ -10,7 +10,7 @@ const cli = meow(`
     $ shutter <command> [<arguments>]
 
   Commands
-    authenticate      Save authentication token.
+    login             Log in into your account.
     update            Selectively update local snapshots.
 
   Low-level commands
@@ -28,6 +28,9 @@ const cli = meow(`
       type: 'boolean'
     },
     local: {
+      type: 'boolean'
+    },
+    status: {
       type: 'boolean'
     }
   }
