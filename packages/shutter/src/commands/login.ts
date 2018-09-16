@@ -7,7 +7,7 @@ import open from 'opn'
 import ora from 'ora'
 import request from 'superagent'
 import joinURL from 'url-join'
-import { getUserConfigPath, loadShutterConfig, updateShutterConfig } from '@shutter/shutterrc'
+import { getUserConfigPath, loadShutterConfig, updateShutterConfig } from '@shutter/core/shutterrc'
 import { CommandFunction } from '../command'
 
 interface UserProfile {

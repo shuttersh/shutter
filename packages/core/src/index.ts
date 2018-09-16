@@ -1,9 +1,9 @@
 import { collectMetadata } from '@shutter/builddata'
-import { loadShutterConfig } from '@shutter/shutterrc'
 import { readFile } from 'mz/fs'
 import * as path from 'path'
 import kebabCase from 'dashify'
 import defaultLayout from './default-layout'
+import { loadShutterConfig } from './shutterrc'
 import { openSnapshotSetsCache, updateSnapshotSetCache } from './snapshot-sets-cache'
 import {
   createFileFromBuffer,
