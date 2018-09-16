@@ -7,7 +7,7 @@ import open from 'opn'
 import ora from 'ora'
 import request from 'superagent'
 import joinURL from 'url-join'
-import { getUserConfigPath, loadShutterConfig, updateShutterConfig } from '@shutter/core/shutterrc'
+import { shutterrc } from '@shutter/core'
 import { CommandFunction } from '../command'
 
 interface UserProfile {
@@ -51,8 +51,8 @@ export const help = `
 `
 
 async function checkLoginStatus () {
-  const userConfig = await loadShutterConfig(path.dirname(getUserConfigPath()))
-  const projectConfig = await loadShutterConfig('./')
+  const userConfig = await shutterrc.loadShutterConfig(path.dirname(shutterrc.getUserConfigPath()))
+  const projectConfig = await shutterrc.loadShutterConfig('./')
   const config = { ...userConfig, ...projectConfig }
 
   if (config.authtoken) {
@@ -66,7 +66,7 @@ async function checkLoginStatus () {
 
 async function login (configFilePath: string) {
   const previousConfig = await isFile(configFilePath)
-    ? await loadShutterConfig(path.dirname(configFilePath))
+    ? await shutterrc.loadShutterConfig(path.dirname(configFilePath))
     : {}
 
   const streamID = nanoid(24)
@@ -80,7 +80,7 @@ async function login (configFilePath: string) {
       eventSource.close()
 
       const authToken = event.data
-      updateShutterConfig(configFilePath, { ...previousConfig, authtoken: authToken })
+      shutterrc.updateShutterConfig(configFilePath, { ...previousConfig, authtoken: authToken })
         .then(() => resolve(authToken))
         .catch(error => reject(error))
     })
@@ -100,7 +100,7 @@ export const command: CommandFunction = async (args: string[], flags: Flags) => 
   if (flags.status) {
     await checkLoginStatus()
   } else {
-    const configFilePath = flags.local ? './.shutterrc' : getUserConfigPath()
+    const configFilePath = flags.local ? './.shutterrc' : shutterrc.getUserConfigPath()
     const authToken = await login(configFilePath)
     const profile = await queryMyUserData(authToken)
 
