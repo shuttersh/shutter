@@ -36,11 +36,11 @@ Use your favorite test runner to write the tests, like Jest, AVA, Mocha, Tape ..
 
 ## Authentication
 
-Log in to your account using the authentication token you received with your [invitation](#sign-up):
+Log in using your GitHub account:
 
 ```bash
 # `npx` comes with npm and will run shutter from ./node_modules/.bin/shutter
-$ npx shutter authenticate YOURTOKENHERE
+$ npx shutter login
 ```
 
 Your authentication token has now been saved to a `.shutterrc` file and we are ready to get productive.
