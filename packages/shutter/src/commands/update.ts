@@ -1,5 +1,5 @@
 import { retrieveFile, retrieveProcessedSnapshot } from '@shutter/api'
-import { openSnapshotSetsCache, LatestSnapshotSetEntry, SnapshotSetCacheEntry } from '@shutter/metacache'
+import { metacache } from '@shutter/core'
 import * as inquirer from 'inquirer'
 import * as fs from 'mz/fs'
 import { CommandFunction } from '../command'
@@ -16,7 +16,7 @@ export const help = `
     --help              Show this help.
 `
 
-const getSnapshotIDsToUpdate = async (snapshotSet: SnapshotSetCacheEntry, args: string[]) => {
+const getSnapshotIDsToUpdate = async (snapshotSet: metacache.SnapshotSetCacheEntry, args: string[]) => {
   if (args.length > 0) {
     // Non-interactive mode
     return args.map(arg => {
@@ -54,18 +54,18 @@ const getSnapshotIDsToUpdate = async (snapshotSet: SnapshotSetCacheEntry, args: 
   }
 }
 
-const updateSnapshot = async (snapshot: SnapshotSetCacheEntry['snapshots'][0]) => {
+const updateSnapshot = async (snapshot: metacache.SnapshotSetCacheEntry['snapshots'][0]) => {
   const fullSnapshotData = await retrieveProcessedSnapshot(snapshot.id)
   const blob = await retrieveFile(fullSnapshotData.result.rendered)
   await fs.writeFile(snapshot.snapshotFilePath, blob)
 }
 
 export const command: CommandFunction = async (args: string[], flags: {}) => {
-  const snapshotSetsCache = await openSnapshotSetsCache()
+  const snapshotSetsCache = await metacache.openSnapshotSetsCache()
 
   if (!await snapshotSetsCache.has('.latest')) throw new Error(`No pointer to latest snapshot set found in cache. Did you even create snapshots before?`)
-  const snapshotSetID = await snapshotSetsCache.read('.latest') as LatestSnapshotSetEntry   // tslint:disable-line
-  const snapshotSet = await snapshotSetsCache.read(snapshotSetID) as SnapshotSetCacheEntry  // tslint:disable-line
+  const snapshotSetID = await snapshotSetsCache.read('.latest') as metacache.LatestSnapshotSetEntry   // tslint:disable-line
+  const snapshotSet = await snapshotSetsCache.read(snapshotSetID) as metacache.SnapshotSetCacheEntry  // tslint:disable-line
 
   const snapshotIDsToUpdate = await getSnapshotIDsToUpdate(snapshotSet, args)
   const snapshotsToUpdate = snapshotSet.snapshots.filter(snapshot => snapshotIDsToUpdate.indexOf(snapshot.id) > -1)

@@ -2,8 +2,8 @@ import test from 'ava'
 import * as fs from 'mz/fs'
 import * as path from 'path'
 import * as os from 'os'
-import { SnapshotSetCacheEntry } from '@shutter/metacache'
 import createShutter from '../src'
+import { SnapshotSetCacheEntry } from '../src/metacache/index'
 import { isDirectory, isFile } from '../test/helpers/fs'
 
 require('dotenv').load()

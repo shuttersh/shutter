@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import meow from 'meow'
-import { loadShutterConfig } from '@shutter/shutterrc'
+import { shutterrc } from '@shutter/core'
 import * as commands from './commands'
 import { showCommandHelp, Command } from './command'
 
@@ -61,7 +61,7 @@ if (cli.input.length === 0 || (cli.flags.help && !command)) {
   process.exit(1)
 }
 
-loadShutterConfig()
+shutterrc.loadShutterConfig()
   .then(config => {
     // Allow using a different API by setting `servicehost` in .shutterrc (for development purposes)
     if (config.serviceHost && !process.env.SHUTTER_API) {

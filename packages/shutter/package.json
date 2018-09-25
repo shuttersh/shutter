@@ -29,8 +29,6 @@
   },
   "dependencies": {
     "@shutter/api": "^0.4.0",
-    "@shutter/metacache": "^0.4.0",
-    "@shutter/shutterrc": "^0.4.0",
     "@types/meow": "^4.0.1",
     "eventsource": "^1.0.7",
     "inquirer": "^3.3.0",
