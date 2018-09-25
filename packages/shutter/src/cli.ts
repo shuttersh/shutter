@@ -27,6 +27,9 @@ const cli = meow(`
     awaitCompletion: {
       type: 'boolean'
     },
+    export: {
+      type: 'boolean'
+    },
     local: {
       type: 'boolean'
     },
