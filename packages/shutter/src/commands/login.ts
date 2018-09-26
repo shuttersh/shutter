@@ -61,7 +61,7 @@ function printLoggedIn (userProfile: UserProfile) {
 }
 
 function printSecurityNote () {
-  console.log(`Security note: Don't forget to add .shutterrc file to your .gitignore.`)
+  console.log(`Security note: Don't forget to add the .shutterrc file to your .gitignore.`)
 }
 
 async function checkLoginStatus () {
