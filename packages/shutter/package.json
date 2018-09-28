@@ -1,6 +1,6 @@
 {
   "name": "shutter",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "license": "MIT",
   "author": "Andy Wermke (https://github.com/andywer)",
   "description": "Shutter.sh command line client",
@@ -28,7 +28,7 @@
     "typescript": "^2.8.3"
   },
   "dependencies": {
-    "@shutter/api": "^0.4.0",
+    "@shutter/api": "^0.5.0",
     "@types/meow": "^4.0.1",
     "eventsource": "^1.0.7",
     "inquirer": "^3.3.0",
