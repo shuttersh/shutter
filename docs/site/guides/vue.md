@@ -160,7 +160,7 @@ test('Button', async t => {
 
 This is an example test using Vuetify components and [AVA](https://ava.li/) as the test runner.
 
-```ts
+```typescript
 import test from 'ava'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
