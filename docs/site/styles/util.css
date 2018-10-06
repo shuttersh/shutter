@@ -7,6 +7,9 @@
   display: inline-flex;
 }
 
+.flex-center {
+  justify-content: center;
+}
 .flex-space-between {
   justify-content: space-between;
 }
