@@ -1,5 +1,10 @@
 .side-menu {
-  margin-top: 24px;
+  margin-top: 28px;
+}
+
+.side-menu > h2 {
+  display: none;
+  margin-top: 0;
 }
 
 .side-menu nav {
