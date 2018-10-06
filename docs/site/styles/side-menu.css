@@ -2,6 +2,11 @@
   margin-top: 28px;
 }
 
+.side-menu > h2 {
+  display: none;
+  margin-top: 0;
+}
+
 .side-menu nav {
   padding: 0;
   padding-left: 0.7em;

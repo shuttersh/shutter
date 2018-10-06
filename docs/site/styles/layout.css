@@ -66,6 +66,40 @@ main > article {
   margin-bottom: 16px;
 }
 
+/* Place side menu below content on mobile */
+@media only screen and (max-width: 650px) {
+  main, main.page-max-width {
+    flex-direction: column-reverse;
+  }
+
+  main > aside {
+    border-right: none;
+  }
+  main > aside.side-menu {
+    margin-top: 0;
+  }
+
+  main > aside.side-menu > h2 {
+    display: block;
+  }
+
+  main > aside.side-menu nav .menu-item {
+    font-size: 125%;
+  }
+
+  main > aside.side-menu nav .current-page {
+    text-decoration: underline;
+  }
+
+  main > article {
+    padding-left: 0;
+  }
+
+  main > article h1 {
+    margin-top: 8px;
+  }
+}
+
 footer {
   position: absolute;
   bottom: 0;
