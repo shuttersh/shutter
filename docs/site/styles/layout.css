@@ -113,8 +113,14 @@ footer {
   font-size: 16px;
 }
 
-footer > * {
+footer > nav {
+  max-width: 800px;
   height: 100%;
+}
+
+footer > nav > * {
+  width: 100px;
+  flex-grow: 1;
 }
 
 footer a {
